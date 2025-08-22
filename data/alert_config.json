@@ -1,0 +1,26 @@
+{
+  "alerts": {
+    "ENABLE_ALERTS": true,
+    "STRONG_BUY_THRESHOLD": 85,
+    "VOLATILITY_THRESHOLD": 15,
+    "VOLUME_SPIKE_THRESHOLD": 200,
+    "MAX_ALERTS_DISPLAY": 10,
+    "ALERT_RETENTION_MINUTES": 60
+  },
+  "dashboard": {
+    "REFRESH_INTERVAL_SECONDS": 30,
+    "MAX_TOKENS_DISPLAY": 50,
+    "DEFAULT_TOKEN_LIMIT": 30
+  },
+  "api": {
+    "coingecko": {
+      "BASE_URL": "https://api.coingecko.com/api/v3",
+      "REQUEST_TIMEOUT": 30,
+      "RATE_LIMIT_DELAY": 1.0
+    },
+    "kraken": {
+      "BASE_URL": "https://api.kraken.com",
+      "REQUEST_TIMEOUT": 30
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "export_info": {
+    "export_type": "alert_history",
+    "days_back": 3,
+    "export_timestamp": "2025-08-21T23:00:52.793790",
+    "total_records": 9
+  },
+  "data": [
+    {
+      "timestamp": "2025-08-21T23:00:52.790185",
+      "symbol": "SOL",
+      "signal_type": "STRONG_BUY",
+      "confidence_score": 70,
+      "price": 5,
+      "message": "Strong Buy alert for SOL",
+      "alert_condition": "Threshold exceeded for STRONG_BUY",
+      "is_active": true
+    },
+    {
+      "timestamp": "2025-08-21T15:00:52.790185",
+      "symbol": "AVAX",
+      "signal_type": "HIGH_VOLATILITY",
+      "confidence_score": 71,
+      "price": 6,
+      "message": "High Volatility alert for AVAX",
+      "alert_condition": "Threshold exceeded for HIGH_VOLATILITY",
+      "is_active": true
+    },
+    {
+      "timestamp": "2025-08-21T07:00:52.790185",
+      "symbol": "MATIC",
+      "signal_type": "VOLUME_SPIKE",
+      "confidence_score": 72,
+      "price": 7,
+      "message": "Volume Spike alert for MATIC",
+      "alert_condition": "Threshold exceeded for VOLUME_SPIKE",
+      "is_active": true
+    },
+    {
+      "timestamp": "2025-08-20T23:00:52.790185",
+      "symbol": "DOT",
+      "signal_type": "STRONG_BUY",
+      "confidence_score": 73,
+      "price": 8,
+      "message": "Strong Buy alert for DOT",
+      "alert_condition": "Threshold exceeded for STRONG_BUY",
+      "is_active": true
+    },
+    {
+      "timestamp": "2025-08-20T15:00:52.790185",
+      "symbol": "ATOM",
+      "signal_type": "HIGH_VOLATILITY",
+      "confidence_score": 74,
+      "price": 9,
+      "message": "High Volatility alert for ATOM",
+      "alert_condition": "Threshold exceeded for HIGH_VOLATILITY",
+      "is_active": true
+    },
+    {
+      "timestamp": "2025-08-20T07:00:52.790185",
+      "symbol": "SOL",
+      "signal_type": "VOLUME_SPIKE",
+      "confidence_score": 75,
+      "price": 10,
+      "message": "Volume Spike alert for SOL",
+      "alert_condition": "Threshold exceeded for VOLUME_SPIKE",
+      "is_active": false
+    },
+    {
+      "timestamp": "2025-08-19T23:00:52.790185",
+      "symbol": "AVAX",
+      "signal_type": "STRONG_BUY",
+      "confidence_score": 76,
+      "price": 11,
+      "message": "Strong Buy alert for AVAX",
+      "alert_condition": "Threshold exceeded for STRONG_BUY",
+      "is_active": false
+    },
+    {
+      "timestamp": "2025-08-19T15:00:52.790185",
+      "symbol": "MATIC",
+      "signal_type": "HIGH_VOLATILITY",
+      "confidence_score": 77,
+      "price": 12,
+      "message": "High Volatility alert for MATIC",
+      "alert_condition": "Threshold exceeded for HIGH_VOLATILITY",
+      "is_active": false
+    },
+    {
+      "timestamp": "2025-08-19T07:00:52.790185",
+      "symbol": "DOT",
+      "signal_type": "VOLUME_SPIKE",
+      "confidence_score": 78,
+      "price": 13,
+      "message": "Volume Spike alert for DOT",
+      "alert_condition": "Threshold exceeded for VOLUME_SPIKE",
+      "is_active": false
+    }
+  ]
+}

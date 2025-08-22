@@ -1,0 +1,1960 @@
+{
+  "export_info": {
+    "export_type": "system_logs",
+    "days_back": 3,
+    "export_timestamp": "2025-08-21T23:00:52.818956",
+    "total_records": 216
+  },
+  "log_summary": {
+    "total_entries": 216,
+    "error_count": 72,
+    "warning_count": 72,
+    "info_count": 72
+  },
+  "data": [
+    {
+      "timestamp": "2025-08-21T23:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 0-0",
+      "thread_id": "Thread-0",
+      "function": "function_0",
+      "line_number": 100
+    },
+    {
+      "timestamp": "2025-08-21T22:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 0-1",
+      "thread_id": "Thread-1",
+      "function": "function_1",
+      "line_number": 101
+    },
+    {
+      "timestamp": "2025-08-21T22:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 0-2",
+      "thread_id": "Thread-2",
+      "function": "function_2",
+      "line_number": 102
+    },
+    {
+      "timestamp": "2025-08-21T22:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 1-0",
+      "thread_id": "Thread-1",
+      "function": "function_0",
+      "line_number": 101
+    },
+    {
+      "timestamp": "2025-08-21T21:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 1-1",
+      "thread_id": "Thread-2",
+      "function": "function_1",
+      "line_number": 102
+    },
+    {
+      "timestamp": "2025-08-21T21:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 1-2",
+      "thread_id": "Thread-3",
+      "function": "function_2",
+      "line_number": 103
+    },
+    {
+      "timestamp": "2025-08-21T21:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 2-0",
+      "thread_id": "Thread-2",
+      "function": "function_0",
+      "line_number": 102
+    },
+    {
+      "timestamp": "2025-08-21T20:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 2-1",
+      "thread_id": "Thread-3",
+      "function": "function_1",
+      "line_number": 103
+    },
+    {
+      "timestamp": "2025-08-21T20:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 2-2",
+      "thread_id": "Thread-4",
+      "function": "function_2",
+      "line_number": 104
+    },
+    {
+      "timestamp": "2025-08-21T20:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 3-0",
+      "thread_id": "Thread-3",
+      "function": "function_0",
+      "line_number": 103
+    },
+    {
+      "timestamp": "2025-08-21T19:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 3-1",
+      "thread_id": "Thread-4",
+      "function": "function_1",
+      "line_number": 104
+    },
+    {
+      "timestamp": "2025-08-21T19:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 3-2",
+      "thread_id": "Thread-0",
+      "function": "function_2",
+      "line_number": 105
+    },
+    {
+      "timestamp": "2025-08-21T19:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 4-0",
+      "thread_id": "Thread-4",
+      "function": "function_0",
+      "line_number": 104
+    },
+    {
+      "timestamp": "2025-08-21T18:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 4-1",
+      "thread_id": "Thread-0",
+      "function": "function_1",
+      "line_number": 105
+    },
+    {
+      "timestamp": "2025-08-21T18:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 4-2",
+      "thread_id": "Thread-1",
+      "function": "function_2",
+      "line_number": 106
+    },
+    {
+      "timestamp": "2025-08-21T18:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 5-0",
+      "thread_id": "Thread-0",
+      "function": "function_0",
+      "line_number": 105
+    },
+    {
+      "timestamp": "2025-08-21T17:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 5-1",
+      "thread_id": "Thread-1",
+      "function": "function_1",
+      "line_number": 106
+    },
+    {
+      "timestamp": "2025-08-21T17:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 5-2",
+      "thread_id": "Thread-2",
+      "function": "function_2",
+      "line_number": 107
+    },
+    {
+      "timestamp": "2025-08-21T17:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 6-0",
+      "thread_id": "Thread-1",
+      "function": "function_0",
+      "line_number": 106
+    },
+    {
+      "timestamp": "2025-08-21T16:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 6-1",
+      "thread_id": "Thread-2",
+      "function": "function_1",
+      "line_number": 107
+    },
+    {
+      "timestamp": "2025-08-21T16:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 6-2",
+      "thread_id": "Thread-3",
+      "function": "function_2",
+      "line_number": 108
+    },
+    {
+      "timestamp": "2025-08-21T16:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 7-0",
+      "thread_id": "Thread-2",
+      "function": "function_0",
+      "line_number": 107
+    },
+    {
+      "timestamp": "2025-08-21T15:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 7-1",
+      "thread_id": "Thread-3",
+      "function": "function_1",
+      "line_number": 108
+    },
+    {
+      "timestamp": "2025-08-21T15:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 7-2",
+      "thread_id": "Thread-4",
+      "function": "function_2",
+      "line_number": 109
+    },
+    {
+      "timestamp": "2025-08-21T15:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 8-0",
+      "thread_id": "Thread-3",
+      "function": "function_0",
+      "line_number": 108
+    },
+    {
+      "timestamp": "2025-08-21T14:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 8-1",
+      "thread_id": "Thread-4",
+      "function": "function_1",
+      "line_number": 109
+    },
+    {
+      "timestamp": "2025-08-21T14:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 8-2",
+      "thread_id": "Thread-0",
+      "function": "function_2",
+      "line_number": 110
+    },
+    {
+      "timestamp": "2025-08-21T14:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 9-0",
+      "thread_id": "Thread-4",
+      "function": "function_0",
+      "line_number": 109
+    },
+    {
+      "timestamp": "2025-08-21T13:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 9-1",
+      "thread_id": "Thread-0",
+      "function": "function_1",
+      "line_number": 110
+    },
+    {
+      "timestamp": "2025-08-21T13:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 9-2",
+      "thread_id": "Thread-1",
+      "function": "function_2",
+      "line_number": 111
+    },
+    {
+      "timestamp": "2025-08-21T13:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 10-0",
+      "thread_id": "Thread-0",
+      "function": "function_0",
+      "line_number": 110
+    },
+    {
+      "timestamp": "2025-08-21T12:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 10-1",
+      "thread_id": "Thread-1",
+      "function": "function_1",
+      "line_number": 111
+    },
+    {
+      "timestamp": "2025-08-21T12:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 10-2",
+      "thread_id": "Thread-2",
+      "function": "function_2",
+      "line_number": 112
+    },
+    {
+      "timestamp": "2025-08-21T12:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 11-0",
+      "thread_id": "Thread-1",
+      "function": "function_0",
+      "line_number": 111
+    },
+    {
+      "timestamp": "2025-08-21T11:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 11-1",
+      "thread_id": "Thread-2",
+      "function": "function_1",
+      "line_number": 112
+    },
+    {
+      "timestamp": "2025-08-21T11:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 11-2",
+      "thread_id": "Thread-3",
+      "function": "function_2",
+      "line_number": 113
+    },
+    {
+      "timestamp": "2025-08-21T11:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 12-0",
+      "thread_id": "Thread-2",
+      "function": "function_0",
+      "line_number": 112
+    },
+    {
+      "timestamp": "2025-08-21T10:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 12-1",
+      "thread_id": "Thread-3",
+      "function": "function_1",
+      "line_number": 113
+    },
+    {
+      "timestamp": "2025-08-21T10:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 12-2",
+      "thread_id": "Thread-4",
+      "function": "function_2",
+      "line_number": 114
+    },
+    {
+      "timestamp": "2025-08-21T10:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 13-0",
+      "thread_id": "Thread-3",
+      "function": "function_0",
+      "line_number": 113
+    },
+    {
+      "timestamp": "2025-08-21T09:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 13-1",
+      "thread_id": "Thread-4",
+      "function": "function_1",
+      "line_number": 114
+    },
+    {
+      "timestamp": "2025-08-21T09:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 13-2",
+      "thread_id": "Thread-0",
+      "function": "function_2",
+      "line_number": 115
+    },
+    {
+      "timestamp": "2025-08-21T09:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 14-0",
+      "thread_id": "Thread-4",
+      "function": "function_0",
+      "line_number": 114
+    },
+    {
+      "timestamp": "2025-08-21T08:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 14-1",
+      "thread_id": "Thread-0",
+      "function": "function_1",
+      "line_number": 115
+    },
+    {
+      "timestamp": "2025-08-21T08:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 14-2",
+      "thread_id": "Thread-1",
+      "function": "function_2",
+      "line_number": 116
+    },
+    {
+      "timestamp": "2025-08-21T08:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 15-0",
+      "thread_id": "Thread-0",
+      "function": "function_0",
+      "line_number": 115
+    },
+    {
+      "timestamp": "2025-08-21T07:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 15-1",
+      "thread_id": "Thread-1",
+      "function": "function_1",
+      "line_number": 116
+    },
+    {
+      "timestamp": "2025-08-21T07:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 15-2",
+      "thread_id": "Thread-2",
+      "function": "function_2",
+      "line_number": 117
+    },
+    {
+      "timestamp": "2025-08-21T07:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 16-0",
+      "thread_id": "Thread-1",
+      "function": "function_0",
+      "line_number": 116
+    },
+    {
+      "timestamp": "2025-08-21T06:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 16-1",
+      "thread_id": "Thread-2",
+      "function": "function_1",
+      "line_number": 117
+    },
+    {
+      "timestamp": "2025-08-21T06:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 16-2",
+      "thread_id": "Thread-3",
+      "function": "function_2",
+      "line_number": 118
+    },
+    {
+      "timestamp": "2025-08-21T06:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 17-0",
+      "thread_id": "Thread-2",
+      "function": "function_0",
+      "line_number": 117
+    },
+    {
+      "timestamp": "2025-08-21T05:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 17-1",
+      "thread_id": "Thread-3",
+      "function": "function_1",
+      "line_number": 118
+    },
+    {
+      "timestamp": "2025-08-21T05:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 17-2",
+      "thread_id": "Thread-4",
+      "function": "function_2",
+      "line_number": 119
+    },
+    {
+      "timestamp": "2025-08-21T05:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 18-0",
+      "thread_id": "Thread-3",
+      "function": "function_0",
+      "line_number": 118
+    },
+    {
+      "timestamp": "2025-08-21T04:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 18-1",
+      "thread_id": "Thread-4",
+      "function": "function_1",
+      "line_number": 119
+    },
+    {
+      "timestamp": "2025-08-21T04:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 18-2",
+      "thread_id": "Thread-0",
+      "function": "function_2",
+      "line_number": 120
+    },
+    {
+      "timestamp": "2025-08-21T04:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 19-0",
+      "thread_id": "Thread-4",
+      "function": "function_0",
+      "line_number": 119
+    },
+    {
+      "timestamp": "2025-08-21T03:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 19-1",
+      "thread_id": "Thread-0",
+      "function": "function_1",
+      "line_number": 120
+    },
+    {
+      "timestamp": "2025-08-21T03:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 19-2",
+      "thread_id": "Thread-1",
+      "function": "function_2",
+      "line_number": 121
+    },
+    {
+      "timestamp": "2025-08-21T03:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 20-0",
+      "thread_id": "Thread-0",
+      "function": "function_0",
+      "line_number": 120
+    },
+    {
+      "timestamp": "2025-08-21T02:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 20-1",
+      "thread_id": "Thread-1",
+      "function": "function_1",
+      "line_number": 121
+    },
+    {
+      "timestamp": "2025-08-21T02:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 20-2",
+      "thread_id": "Thread-2",
+      "function": "function_2",
+      "line_number": 122
+    },
+    {
+      "timestamp": "2025-08-21T02:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 21-0",
+      "thread_id": "Thread-1",
+      "function": "function_0",
+      "line_number": 121
+    },
+    {
+      "timestamp": "2025-08-21T01:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 21-1",
+      "thread_id": "Thread-2",
+      "function": "function_1",
+      "line_number": 122
+    },
+    {
+      "timestamp": "2025-08-21T01:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 21-2",
+      "thread_id": "Thread-3",
+      "function": "function_2",
+      "line_number": 123
+    },
+    {
+      "timestamp": "2025-08-21T01:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 22-0",
+      "thread_id": "Thread-2",
+      "function": "function_0",
+      "line_number": 122
+    },
+    {
+      "timestamp": "2025-08-21T00:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 22-1",
+      "thread_id": "Thread-3",
+      "function": "function_1",
+      "line_number": 123
+    },
+    {
+      "timestamp": "2025-08-21T00:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 22-2",
+      "thread_id": "Thread-4",
+      "function": "function_2",
+      "line_number": 124
+    },
+    {
+      "timestamp": "2025-08-21T00:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 23-0",
+      "thread_id": "Thread-3",
+      "function": "function_0",
+      "line_number": 123
+    },
+    {
+      "timestamp": "2025-08-20T23:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 23-1",
+      "thread_id": "Thread-4",
+      "function": "function_1",
+      "line_number": 124
+    },
+    {
+      "timestamp": "2025-08-20T23:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 23-2",
+      "thread_id": "Thread-0",
+      "function": "function_2",
+      "line_number": 125
+    },
+    {
+      "timestamp": "2025-08-20T23:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 24-0",
+      "thread_id": "Thread-4",
+      "function": "function_0",
+      "line_number": 124
+    },
+    {
+      "timestamp": "2025-08-20T22:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 24-1",
+      "thread_id": "Thread-0",
+      "function": "function_1",
+      "line_number": 125
+    },
+    {
+      "timestamp": "2025-08-20T22:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 24-2",
+      "thread_id": "Thread-1",
+      "function": "function_2",
+      "line_number": 126
+    },
+    {
+      "timestamp": "2025-08-20T22:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 25-0",
+      "thread_id": "Thread-0",
+      "function": "function_0",
+      "line_number": 125
+    },
+    {
+      "timestamp": "2025-08-20T21:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 25-1",
+      "thread_id": "Thread-1",
+      "function": "function_1",
+      "line_number": 126
+    },
+    {
+      "timestamp": "2025-08-20T21:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 25-2",
+      "thread_id": "Thread-2",
+      "function": "function_2",
+      "line_number": 127
+    },
+    {
+      "timestamp": "2025-08-20T21:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 26-0",
+      "thread_id": "Thread-1",
+      "function": "function_0",
+      "line_number": 126
+    },
+    {
+      "timestamp": "2025-08-20T20:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 26-1",
+      "thread_id": "Thread-2",
+      "function": "function_1",
+      "line_number": 127
+    },
+    {
+      "timestamp": "2025-08-20T20:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 26-2",
+      "thread_id": "Thread-3",
+      "function": "function_2",
+      "line_number": 128
+    },
+    {
+      "timestamp": "2025-08-20T20:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 27-0",
+      "thread_id": "Thread-2",
+      "function": "function_0",
+      "line_number": 127
+    },
+    {
+      "timestamp": "2025-08-20T19:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 27-1",
+      "thread_id": "Thread-3",
+      "function": "function_1",
+      "line_number": 128
+    },
+    {
+      "timestamp": "2025-08-20T19:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 27-2",
+      "thread_id": "Thread-4",
+      "function": "function_2",
+      "line_number": 129
+    },
+    {
+      "timestamp": "2025-08-20T19:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 28-0",
+      "thread_id": "Thread-3",
+      "function": "function_0",
+      "line_number": 128
+    },
+    {
+      "timestamp": "2025-08-20T18:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 28-1",
+      "thread_id": "Thread-4",
+      "function": "function_1",
+      "line_number": 129
+    },
+    {
+      "timestamp": "2025-08-20T18:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 28-2",
+      "thread_id": "Thread-0",
+      "function": "function_2",
+      "line_number": 130
+    },
+    {
+      "timestamp": "2025-08-20T18:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 29-0",
+      "thread_id": "Thread-4",
+      "function": "function_0",
+      "line_number": 129
+    },
+    {
+      "timestamp": "2025-08-20T17:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 29-1",
+      "thread_id": "Thread-0",
+      "function": "function_1",
+      "line_number": 130
+    },
+    {
+      "timestamp": "2025-08-20T17:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 29-2",
+      "thread_id": "Thread-1",
+      "function": "function_2",
+      "line_number": 131
+    },
+    {
+      "timestamp": "2025-08-20T17:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 30-0",
+      "thread_id": "Thread-0",
+      "function": "function_0",
+      "line_number": 130
+    },
+    {
+      "timestamp": "2025-08-20T16:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 30-1",
+      "thread_id": "Thread-1",
+      "function": "function_1",
+      "line_number": 131
+    },
+    {
+      "timestamp": "2025-08-20T16:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 30-2",
+      "thread_id": "Thread-2",
+      "function": "function_2",
+      "line_number": 132
+    },
+    {
+      "timestamp": "2025-08-20T16:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 31-0",
+      "thread_id": "Thread-1",
+      "function": "function_0",
+      "line_number": 131
+    },
+    {
+      "timestamp": "2025-08-20T15:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 31-1",
+      "thread_id": "Thread-2",
+      "function": "function_1",
+      "line_number": 132
+    },
+    {
+      "timestamp": "2025-08-20T15:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 31-2",
+      "thread_id": "Thread-3",
+      "function": "function_2",
+      "line_number": 133
+    },
+    {
+      "timestamp": "2025-08-20T15:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 32-0",
+      "thread_id": "Thread-2",
+      "function": "function_0",
+      "line_number": 132
+    },
+    {
+      "timestamp": "2025-08-20T14:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 32-1",
+      "thread_id": "Thread-3",
+      "function": "function_1",
+      "line_number": 133
+    },
+    {
+      "timestamp": "2025-08-20T14:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 32-2",
+      "thread_id": "Thread-4",
+      "function": "function_2",
+      "line_number": 134
+    },
+    {
+      "timestamp": "2025-08-20T14:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 33-0",
+      "thread_id": "Thread-3",
+      "function": "function_0",
+      "line_number": 133
+    },
+    {
+      "timestamp": "2025-08-20T13:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 33-1",
+      "thread_id": "Thread-4",
+      "function": "function_1",
+      "line_number": 134
+    },
+    {
+      "timestamp": "2025-08-20T13:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 33-2",
+      "thread_id": "Thread-0",
+      "function": "function_2",
+      "line_number": 135
+    },
+    {
+      "timestamp": "2025-08-20T13:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 34-0",
+      "thread_id": "Thread-4",
+      "function": "function_0",
+      "line_number": 134
+    },
+    {
+      "timestamp": "2025-08-20T12:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 34-1",
+      "thread_id": "Thread-0",
+      "function": "function_1",
+      "line_number": 135
+    },
+    {
+      "timestamp": "2025-08-20T12:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 34-2",
+      "thread_id": "Thread-1",
+      "function": "function_2",
+      "line_number": 136
+    },
+    {
+      "timestamp": "2025-08-20T12:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 35-0",
+      "thread_id": "Thread-0",
+      "function": "function_0",
+      "line_number": 135
+    },
+    {
+      "timestamp": "2025-08-20T11:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 35-1",
+      "thread_id": "Thread-1",
+      "function": "function_1",
+      "line_number": 136
+    },
+    {
+      "timestamp": "2025-08-20T11:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 35-2",
+      "thread_id": "Thread-2",
+      "function": "function_2",
+      "line_number": 137
+    },
+    {
+      "timestamp": "2025-08-20T11:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 36-0",
+      "thread_id": "Thread-1",
+      "function": "function_0",
+      "line_number": 136
+    },
+    {
+      "timestamp": "2025-08-20T10:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 36-1",
+      "thread_id": "Thread-2",
+      "function": "function_1",
+      "line_number": 137
+    },
+    {
+      "timestamp": "2025-08-20T10:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 36-2",
+      "thread_id": "Thread-3",
+      "function": "function_2",
+      "line_number": 138
+    },
+    {
+      "timestamp": "2025-08-20T10:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 37-0",
+      "thread_id": "Thread-2",
+      "function": "function_0",
+      "line_number": 137
+    },
+    {
+      "timestamp": "2025-08-20T09:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 37-1",
+      "thread_id": "Thread-3",
+      "function": "function_1",
+      "line_number": 138
+    },
+    {
+      "timestamp": "2025-08-20T09:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 37-2",
+      "thread_id": "Thread-4",
+      "function": "function_2",
+      "line_number": 139
+    },
+    {
+      "timestamp": "2025-08-20T09:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 38-0",
+      "thread_id": "Thread-3",
+      "function": "function_0",
+      "line_number": 138
+    },
+    {
+      "timestamp": "2025-08-20T08:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 38-1",
+      "thread_id": "Thread-4",
+      "function": "function_1",
+      "line_number": 139
+    },
+    {
+      "timestamp": "2025-08-20T08:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 38-2",
+      "thread_id": "Thread-0",
+      "function": "function_2",
+      "line_number": 140
+    },
+    {
+      "timestamp": "2025-08-20T08:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 39-0",
+      "thread_id": "Thread-4",
+      "function": "function_0",
+      "line_number": 139
+    },
+    {
+      "timestamp": "2025-08-20T07:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 39-1",
+      "thread_id": "Thread-0",
+      "function": "function_1",
+      "line_number": 140
+    },
+    {
+      "timestamp": "2025-08-20T07:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 39-2",
+      "thread_id": "Thread-1",
+      "function": "function_2",
+      "line_number": 141
+    },
+    {
+      "timestamp": "2025-08-20T07:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 40-0",
+      "thread_id": "Thread-0",
+      "function": "function_0",
+      "line_number": 140
+    },
+    {
+      "timestamp": "2025-08-20T06:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 40-1",
+      "thread_id": "Thread-1",
+      "function": "function_1",
+      "line_number": 141
+    },
+    {
+      "timestamp": "2025-08-20T06:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 40-2",
+      "thread_id": "Thread-2",
+      "function": "function_2",
+      "line_number": 142
+    },
+    {
+      "timestamp": "2025-08-20T06:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 41-0",
+      "thread_id": "Thread-1",
+      "function": "function_0",
+      "line_number": 141
+    },
+    {
+      "timestamp": "2025-08-20T05:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 41-1",
+      "thread_id": "Thread-2",
+      "function": "function_1",
+      "line_number": 142
+    },
+    {
+      "timestamp": "2025-08-20T05:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 41-2",
+      "thread_id": "Thread-3",
+      "function": "function_2",
+      "line_number": 143
+    },
+    {
+      "timestamp": "2025-08-20T05:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 42-0",
+      "thread_id": "Thread-2",
+      "function": "function_0",
+      "line_number": 142
+    },
+    {
+      "timestamp": "2025-08-20T04:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 42-1",
+      "thread_id": "Thread-3",
+      "function": "function_1",
+      "line_number": 143
+    },
+    {
+      "timestamp": "2025-08-20T04:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 42-2",
+      "thread_id": "Thread-4",
+      "function": "function_2",
+      "line_number": 144
+    },
+    {
+      "timestamp": "2025-08-20T04:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 43-0",
+      "thread_id": "Thread-3",
+      "function": "function_0",
+      "line_number": 143
+    },
+    {
+      "timestamp": "2025-08-20T03:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 43-1",
+      "thread_id": "Thread-4",
+      "function": "function_1",
+      "line_number": 144
+    },
+    {
+      "timestamp": "2025-08-20T03:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 43-2",
+      "thread_id": "Thread-0",
+      "function": "function_2",
+      "line_number": 145
+    },
+    {
+      "timestamp": "2025-08-20T03:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 44-0",
+      "thread_id": "Thread-4",
+      "function": "function_0",
+      "line_number": 144
+    },
+    {
+      "timestamp": "2025-08-20T02:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 44-1",
+      "thread_id": "Thread-0",
+      "function": "function_1",
+      "line_number": 145
+    },
+    {
+      "timestamp": "2025-08-20T02:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 44-2",
+      "thread_id": "Thread-1",
+      "function": "function_2",
+      "line_number": 146
+    },
+    {
+      "timestamp": "2025-08-20T02:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 45-0",
+      "thread_id": "Thread-0",
+      "function": "function_0",
+      "line_number": 145
+    },
+    {
+      "timestamp": "2025-08-20T01:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 45-1",
+      "thread_id": "Thread-1",
+      "function": "function_1",
+      "line_number": 146
+    },
+    {
+      "timestamp": "2025-08-20T01:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 45-2",
+      "thread_id": "Thread-2",
+      "function": "function_2",
+      "line_number": 147
+    },
+    {
+      "timestamp": "2025-08-20T01:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 46-0",
+      "thread_id": "Thread-1",
+      "function": "function_0",
+      "line_number": 146
+    },
+    {
+      "timestamp": "2025-08-20T00:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 46-1",
+      "thread_id": "Thread-2",
+      "function": "function_1",
+      "line_number": 147
+    },
+    {
+      "timestamp": "2025-08-20T00:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 46-2",
+      "thread_id": "Thread-3",
+      "function": "function_2",
+      "line_number": 148
+    },
+    {
+      "timestamp": "2025-08-20T00:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 47-0",
+      "thread_id": "Thread-2",
+      "function": "function_0",
+      "line_number": 147
+    },
+    {
+      "timestamp": "2025-08-19T23:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 47-1",
+      "thread_id": "Thread-3",
+      "function": "function_1",
+      "line_number": 148
+    },
+    {
+      "timestamp": "2025-08-19T23:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 47-2",
+      "thread_id": "Thread-4",
+      "function": "function_2",
+      "line_number": 149
+    },
+    {
+      "timestamp": "2025-08-19T23:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 48-0",
+      "thread_id": "Thread-3",
+      "function": "function_0",
+      "line_number": 148
+    },
+    {
+      "timestamp": "2025-08-19T22:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 48-1",
+      "thread_id": "Thread-4",
+      "function": "function_1",
+      "line_number": 149
+    },
+    {
+      "timestamp": "2025-08-19T22:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 48-2",
+      "thread_id": "Thread-0",
+      "function": "function_2",
+      "line_number": 100
+    },
+    {
+      "timestamp": "2025-08-19T22:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 49-0",
+      "thread_id": "Thread-4",
+      "function": "function_0",
+      "line_number": 149
+    },
+    {
+      "timestamp": "2025-08-19T21:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 49-1",
+      "thread_id": "Thread-0",
+      "function": "function_1",
+      "line_number": 100
+    },
+    {
+      "timestamp": "2025-08-19T21:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 49-2",
+      "thread_id": "Thread-1",
+      "function": "function_2",
+      "line_number": 101
+    },
+    {
+      "timestamp": "2025-08-19T21:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 50-0",
+      "thread_id": "Thread-0",
+      "function": "function_0",
+      "line_number": 100
+    },
+    {
+      "timestamp": "2025-08-19T20:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 50-1",
+      "thread_id": "Thread-1",
+      "function": "function_1",
+      "line_number": 101
+    },
+    {
+      "timestamp": "2025-08-19T20:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 50-2",
+      "thread_id": "Thread-2",
+      "function": "function_2",
+      "line_number": 102
+    },
+    {
+      "timestamp": "2025-08-19T20:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 51-0",
+      "thread_id": "Thread-1",
+      "function": "function_0",
+      "line_number": 101
+    },
+    {
+      "timestamp": "2025-08-19T19:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 51-1",
+      "thread_id": "Thread-2",
+      "function": "function_1",
+      "line_number": 102
+    },
+    {
+      "timestamp": "2025-08-19T19:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 51-2",
+      "thread_id": "Thread-3",
+      "function": "function_2",
+      "line_number": 103
+    },
+    {
+      "timestamp": "2025-08-19T19:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 52-0",
+      "thread_id": "Thread-2",
+      "function": "function_0",
+      "line_number": 102
+    },
+    {
+      "timestamp": "2025-08-19T18:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 52-1",
+      "thread_id": "Thread-3",
+      "function": "function_1",
+      "line_number": 103
+    },
+    {
+      "timestamp": "2025-08-19T18:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 52-2",
+      "thread_id": "Thread-4",
+      "function": "function_2",
+      "line_number": 104
+    },
+    {
+      "timestamp": "2025-08-19T18:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 53-0",
+      "thread_id": "Thread-3",
+      "function": "function_0",
+      "line_number": 103
+    },
+    {
+      "timestamp": "2025-08-19T17:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 53-1",
+      "thread_id": "Thread-4",
+      "function": "function_1",
+      "line_number": 104
+    },
+    {
+      "timestamp": "2025-08-19T17:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 53-2",
+      "thread_id": "Thread-0",
+      "function": "function_2",
+      "line_number": 105
+    },
+    {
+      "timestamp": "2025-08-19T17:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 54-0",
+      "thread_id": "Thread-4",
+      "function": "function_0",
+      "line_number": 104
+    },
+    {
+      "timestamp": "2025-08-19T16:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 54-1",
+      "thread_id": "Thread-0",
+      "function": "function_1",
+      "line_number": 105
+    },
+    {
+      "timestamp": "2025-08-19T16:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 54-2",
+      "thread_id": "Thread-1",
+      "function": "function_2",
+      "line_number": 106
+    },
+    {
+      "timestamp": "2025-08-19T16:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 55-0",
+      "thread_id": "Thread-0",
+      "function": "function_0",
+      "line_number": 105
+    },
+    {
+      "timestamp": "2025-08-19T15:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 55-1",
+      "thread_id": "Thread-1",
+      "function": "function_1",
+      "line_number": 106
+    },
+    {
+      "timestamp": "2025-08-19T15:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 55-2",
+      "thread_id": "Thread-2",
+      "function": "function_2",
+      "line_number": 107
+    },
+    {
+      "timestamp": "2025-08-19T15:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 56-0",
+      "thread_id": "Thread-1",
+      "function": "function_0",
+      "line_number": 106
+    },
+    {
+      "timestamp": "2025-08-19T14:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 56-1",
+      "thread_id": "Thread-2",
+      "function": "function_1",
+      "line_number": 107
+    },
+    {
+      "timestamp": "2025-08-19T14:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 56-2",
+      "thread_id": "Thread-3",
+      "function": "function_2",
+      "line_number": 108
+    },
+    {
+      "timestamp": "2025-08-19T14:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 57-0",
+      "thread_id": "Thread-2",
+      "function": "function_0",
+      "line_number": 107
+    },
+    {
+      "timestamp": "2025-08-19T13:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 57-1",
+      "thread_id": "Thread-3",
+      "function": "function_1",
+      "line_number": 108
+    },
+    {
+      "timestamp": "2025-08-19T13:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 57-2",
+      "thread_id": "Thread-4",
+      "function": "function_2",
+      "line_number": 109
+    },
+    {
+      "timestamp": "2025-08-19T13:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 58-0",
+      "thread_id": "Thread-3",
+      "function": "function_0",
+      "line_number": 108
+    },
+    {
+      "timestamp": "2025-08-19T12:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 58-1",
+      "thread_id": "Thread-4",
+      "function": "function_1",
+      "line_number": 109
+    },
+    {
+      "timestamp": "2025-08-19T12:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 58-2",
+      "thread_id": "Thread-0",
+      "function": "function_2",
+      "line_number": 110
+    },
+    {
+      "timestamp": "2025-08-19T12:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 59-0",
+      "thread_id": "Thread-4",
+      "function": "function_0",
+      "line_number": 109
+    },
+    {
+      "timestamp": "2025-08-19T11:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 59-1",
+      "thread_id": "Thread-0",
+      "function": "function_1",
+      "line_number": 110
+    },
+    {
+      "timestamp": "2025-08-19T11:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 59-2",
+      "thread_id": "Thread-1",
+      "function": "function_2",
+      "line_number": 111
+    },
+    {
+      "timestamp": "2025-08-19T11:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 60-0",
+      "thread_id": "Thread-0",
+      "function": "function_0",
+      "line_number": 110
+    },
+    {
+      "timestamp": "2025-08-19T10:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 60-1",
+      "thread_id": "Thread-1",
+      "function": "function_1",
+      "line_number": 111
+    },
+    {
+      "timestamp": "2025-08-19T10:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 60-2",
+      "thread_id": "Thread-2",
+      "function": "function_2",
+      "line_number": 112
+    },
+    {
+      "timestamp": "2025-08-19T10:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 61-0",
+      "thread_id": "Thread-1",
+      "function": "function_0",
+      "line_number": 111
+    },
+    {
+      "timestamp": "2025-08-19T09:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 61-1",
+      "thread_id": "Thread-2",
+      "function": "function_1",
+      "line_number": 112
+    },
+    {
+      "timestamp": "2025-08-19T09:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 61-2",
+      "thread_id": "Thread-3",
+      "function": "function_2",
+      "line_number": 113
+    },
+    {
+      "timestamp": "2025-08-19T09:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 62-0",
+      "thread_id": "Thread-2",
+      "function": "function_0",
+      "line_number": 112
+    },
+    {
+      "timestamp": "2025-08-19T08:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 62-1",
+      "thread_id": "Thread-3",
+      "function": "function_1",
+      "line_number": 113
+    },
+    {
+      "timestamp": "2025-08-19T08:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 62-2",
+      "thread_id": "Thread-4",
+      "function": "function_2",
+      "line_number": 114
+    },
+    {
+      "timestamp": "2025-08-19T08:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 63-0",
+      "thread_id": "Thread-3",
+      "function": "function_0",
+      "line_number": 113
+    },
+    {
+      "timestamp": "2025-08-19T07:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 63-1",
+      "thread_id": "Thread-4",
+      "function": "function_1",
+      "line_number": 114
+    },
+    {
+      "timestamp": "2025-08-19T07:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 63-2",
+      "thread_id": "Thread-0",
+      "function": "function_2",
+      "line_number": 115
+    },
+    {
+      "timestamp": "2025-08-19T07:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 64-0",
+      "thread_id": "Thread-4",
+      "function": "function_0",
+      "line_number": 114
+    },
+    {
+      "timestamp": "2025-08-19T06:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 64-1",
+      "thread_id": "Thread-0",
+      "function": "function_1",
+      "line_number": 115
+    },
+    {
+      "timestamp": "2025-08-19T06:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 64-2",
+      "thread_id": "Thread-1",
+      "function": "function_2",
+      "line_number": 116
+    },
+    {
+      "timestamp": "2025-08-19T06:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 65-0",
+      "thread_id": "Thread-0",
+      "function": "function_0",
+      "line_number": 115
+    },
+    {
+      "timestamp": "2025-08-19T05:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 65-1",
+      "thread_id": "Thread-1",
+      "function": "function_1",
+      "line_number": 116
+    },
+    {
+      "timestamp": "2025-08-19T05:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 65-2",
+      "thread_id": "Thread-2",
+      "function": "function_2",
+      "line_number": 117
+    },
+    {
+      "timestamp": "2025-08-19T05:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 66-0",
+      "thread_id": "Thread-1",
+      "function": "function_0",
+      "line_number": 116
+    },
+    {
+      "timestamp": "2025-08-19T04:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 66-1",
+      "thread_id": "Thread-2",
+      "function": "function_1",
+      "line_number": 117
+    },
+    {
+      "timestamp": "2025-08-19T04:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 66-2",
+      "thread_id": "Thread-3",
+      "function": "function_2",
+      "line_number": 118
+    },
+    {
+      "timestamp": "2025-08-19T04:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 67-0",
+      "thread_id": "Thread-2",
+      "function": "function_0",
+      "line_number": 117
+    },
+    {
+      "timestamp": "2025-08-19T03:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 67-1",
+      "thread_id": "Thread-3",
+      "function": "function_1",
+      "line_number": 118
+    },
+    {
+      "timestamp": "2025-08-19T03:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 67-2",
+      "thread_id": "Thread-4",
+      "function": "function_2",
+      "line_number": 119
+    },
+    {
+      "timestamp": "2025-08-19T03:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 68-0",
+      "thread_id": "Thread-3",
+      "function": "function_0",
+      "line_number": 118
+    },
+    {
+      "timestamp": "2025-08-19T02:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 68-1",
+      "thread_id": "Thread-4",
+      "function": "function_1",
+      "line_number": 119
+    },
+    {
+      "timestamp": "2025-08-19T02:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 68-2",
+      "thread_id": "Thread-0",
+      "function": "function_2",
+      "line_number": 120
+    },
+    {
+      "timestamp": "2025-08-19T02:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 69-0",
+      "thread_id": "Thread-4",
+      "function": "function_0",
+      "line_number": 119
+    },
+    {
+      "timestamp": "2025-08-19T01:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 69-1",
+      "thread_id": "Thread-0",
+      "function": "function_1",
+      "line_number": 120
+    },
+    {
+      "timestamp": "2025-08-19T01:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 69-2",
+      "thread_id": "Thread-1",
+      "function": "function_2",
+      "line_number": 121
+    },
+    {
+      "timestamp": "2025-08-19T01:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 70-0",
+      "thread_id": "Thread-0",
+      "function": "function_0",
+      "line_number": 120
+    },
+    {
+      "timestamp": "2025-08-19T00:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 70-1",
+      "thread_id": "Thread-1",
+      "function": "function_1",
+      "line_number": 121
+    },
+    {
+      "timestamp": "2025-08-19T00:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 70-2",
+      "thread_id": "Thread-2",
+      "function": "function_2",
+      "line_number": 122
+    },
+    {
+      "timestamp": "2025-08-19T00:00:52.810165",
+      "level": "INFO",
+      "component": "AlertManager",
+      "message": "Sample log message 71-0",
+      "thread_id": "Thread-1",
+      "function": "function_0",
+      "line_number": 121
+    },
+    {
+      "timestamp": "2025-08-18T23:40:52.810165",
+      "level": "WARNING",
+      "component": "CoinGeckoAPI",
+      "message": "Sample log message 71-1",
+      "thread_id": "Thread-2",
+      "function": "function_1",
+      "line_number": 122
+    },
+    {
+      "timestamp": "2025-08-18T23:20:52.810165",
+      "level": "ERROR",
+      "component": "ExportScheduler",
+      "message": "Sample log message 71-2",
+      "thread_id": "Thread-3",
+      "function": "function_2",
+      "line_number": 123
+    }
+  ]
+}
