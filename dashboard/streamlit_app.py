@@ -18,6 +18,8 @@ from api_clients.coingecko_api import CoinGeckoAPI
 from dashboard.components.alert_manager import AlertManager
 from config.settings import get_alert_config, get_config_summary
 from data.exports.export_scheduler import ExportScheduler
+from trading.paper_trading import create_virtual_portfolio, execute_signal_trade
+from trading.signal_integration import create_auto_trading_engine
 
 # Page configuration
 st.set_page_config(
@@ -36,6 +38,14 @@ if 'export_scheduler' not in st.session_state:
     st.session_state.export_scheduler = ExportScheduler()
 if 'last_alert_check' not in st.session_state:
     st.session_state.last_alert_check = None
+if 'virtual_portfolio' not in st.session_state:
+    st.session_state.virtual_portfolio = create_virtual_portfolio(10000.0)
+if 'auto_trading_engine' not in st.session_state:
+    st.session_state.auto_trading_engine = create_auto_trading_engine(
+        st.session_state.virtual_portfolio,
+        st.session_state.alert_manager,
+        st.session_state.coingecko_api
+    )
 
 # Get alert configuration
 alert_config = get_alert_config()
@@ -452,6 +462,82 @@ def display_alert_analytics():
         alert_history = st.session_state.alert_manager.alert_history[-20:]  # Last 20 alerts
         
         if alert_history:
+            st.markdown("#### Recent Alerts with Paper Trading")
+            
+            for i, alert in enumerate(alert_history):
+                with st.container():
+                    col1, col2, col3, col4, col5, col6 = st.columns([2, 2, 1, 1, 1, 1])
+                    
+                    with col1:
+                        st.write(f"**{alert.symbol}**")
+                    
+                    with col2:
+                        signal_color = get_alert_color(alert.signal_type)
+                        st.markdown(f"<span style='color: {signal_color}'>{alert.signal_type.replace('_', ' ').title()}</span>", unsafe_allow_html=True)
+                    
+                    with col3:
+                        st.write(f"{alert.confidence_score:.1f}%")
+                    
+                    with col4:
+                        st.write(alert.timestamp.strftime("%H:%M"))
+                    
+                    with col5:
+                        # Paper trade button for buy signals
+                        if alert.signal_type in ['STRONG_BUY', 'BUY'] and alert.is_active:
+                            if st.button("📈 Paper Trade", key=f"trade_buy_{alert.id}_{i}", help="Execute paper trade for this signal"):
+                                # Create signal data for paper trading
+                                signal_data = {
+                                    'symbol': alert.symbol,
+                                    'signal': alert.signal_type,
+                                    'current_price': getattr(alert, 'current_price', 1.0),  # Default price if not available
+                                    'confidence_score': alert.confidence_score
+                                }
+                                
+                                # Get position size from session state or use default
+                                position_size = st.session_state.get('default_position_size', 500)
+                                
+                                # Execute the trade
+                                result = execute_signal_trade(st.session_state.virtual_portfolio, signal_data, position_size)
+                                
+                                if result.get('success', False):
+                                    st.success(f"✅ Paper trade executed: {signal_data['symbol']} - ${position_size}")
+                                    st.rerun()
+                                else:
+                                    st.error(f"❌ Trade failed: {result.get('error', 'Unknown error')}")
+                        
+                        # Paper trade button for sell signals
+                        elif alert.signal_type in ['AVOID', 'SELL'] and alert.is_active:
+                            if st.button("📉 Paper Sell", key=f"trade_sell_{alert.id}_{i}", help="Execute paper sell for this signal"):
+                                # Create signal data for paper trading
+                                signal_data = {
+                                    'symbol': alert.symbol,
+                                    'signal': alert.signal_type,
+                                    'current_price': getattr(alert, 'current_price', 1.0),
+                                    'confidence_score': alert.confidence_score
+                                }
+                                
+                                # Get position size from session state or use default
+                                position_size = st.session_state.get('default_position_size', 500)
+                                
+                                # Execute the trade
+                                result = execute_signal_trade(st.session_state.virtual_portfolio, signal_data, position_size)
+                                
+                                if result.get('success', False):
+                                    st.success(f"✅ Paper sell executed: {signal_data['symbol']}")
+                                    st.rerun()
+                                else:
+                                    st.error(f"❌ Trade failed: {result.get('error', 'Unknown error')}")
+                        else:
+                            st.write("-")
+                    
+                    with col6:
+                        status = "🟢 Active" if alert.is_active else "🔴 Inactive"
+                        st.write(status)
+                    
+                    st.markdown("---")
+            
+            # Also show traditional table view
+            st.markdown("#### Alert History Table")
             history_data = []
             for alert in alert_history:
                 history_data.append({
@@ -1365,6 +1451,384 @@ def generate_sample_training_data(num_samples=50):
     
     return training_data
 
+def display_paper_trading():
+    """Display paper trading interface"""
+    st.markdown("## 📈 Paper Trading Portfolio")
+    
+    portfolio = st.session_state.virtual_portfolio
+    
+    # Get current prices for portfolio calculation
+    try:
+        with st.spinner("Loading current prices..."):
+            analyzed_df = st.session_state.coingecko_api.get_analyzed_solana_tokens(limit=50)
+        
+        # Create price dictionary from analyzed tokens
+        current_prices = {}
+        if not analyzed_df.empty:
+            for _, row in analyzed_df.iterrows():
+                current_prices[row['symbol']] = row['current_price']
+    except Exception as e:
+        st.error(f"Error loading current prices: {e}")
+        current_prices = {}
+    
+    # Get portfolio summary
+    portfolio_summary = portfolio.get_portfolio_summary(current_prices)
+    performance = portfolio_summary['performance_metrics']
+    
+    # Display key metrics
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col1:
+        st.metric(
+            "Portfolio Value", 
+            f"${performance['current_portfolio_value']:,.2f}",
+            f"{performance['total_return_percentage']:+.2f}%"
+        )
+    
+    with col2:
+        st.metric(
+            "Cash Balance", 
+            f"${performance['cash_balance']:,.2f}"
+        )
+    
+    with col3:
+        st.metric(
+            "Total Trades", 
+            performance['total_trades'],
+            f"Win Rate: {performance['win_rate']:.1f}%"
+        )
+    
+    with col4:
+        unrealized_pnl = performance.get('unrealized_pnl', 0)
+        st.metric(
+            "Unrealized P&L", 
+            f"${unrealized_pnl:+,.2f}",
+            f"Positions: {performance['positions_count']}"
+        )
+    
+    # Create tabs for different views
+    ptab1, ptab2, ptab3, ptab4, ptab5 = st.tabs(["Positions", "Trade History", "Performance", "Settings", "Auto-Trading"])
+    
+    with ptab1:
+        st.markdown("### Current Positions")
+        
+        position_details = portfolio_summary['position_details']
+        if position_details:
+            # Create DataFrame for positions
+            positions_df = pd.DataFrame(position_details)
+            
+            # Format for display
+            display_positions = positions_df.copy()
+            display_positions['avg_price'] = display_positions['avg_price'].apply(lambda x: f"${x:.6f}")
+            display_positions['current_price'] = display_positions['current_price'].apply(lambda x: f"${x:.6f}")
+            display_positions['market_value'] = display_positions['market_value'].apply(lambda x: f"${x:,.2f}")
+            display_positions['total_cost'] = display_positions['total_cost'].apply(lambda x: f"${x:,.2f}")
+            display_positions['unrealized_pnl'] = display_positions['unrealized_pnl'].apply(lambda x: f"${x:+,.2f}")
+            display_positions['unrealized_pnl_percentage'] = display_positions['unrealized_pnl_percentage'].apply(lambda x: f"{x:+.2f}%")
+            display_positions['quantity'] = display_positions['quantity'].apply(lambda x: f"{x:.4f}")
+            
+            st.dataframe(display_positions, use_container_width=True)
+        else:
+            st.info("No open positions")
+    
+    with ptab2:
+        st.markdown("### Recent Trades")
+        
+        recent_trades = portfolio_summary['recent_trades']
+        if recent_trades:
+            # Create DataFrame for trades
+            trades_data = []
+            for trade in recent_trades:
+                trade_data = {
+                    'Time': datetime.fromisoformat(trade['timestamp']).strftime('%H:%M:%S'),
+                    'Symbol': trade['symbol'],
+                    'Side': trade['side'],
+                    'Quantity': f"{trade['quantity']:.4f}",
+                    'Price': f"${trade['price']:.6f}",
+                    'Value': f"${trade['total_value']:,.2f}"
+                }
+                
+                # Add P&L for sell trades
+                if trade['side'] == 'SELL' and 'pnl' in trade:
+                    trade_data['P&L'] = f"${trade['pnl']:+,.2f}"
+                    trade_data['P&L %'] = f"{trade['pnl_percentage']:+.2f}%"
+                else:
+                    trade_data['P&L'] = "-"
+                    trade_data['P&L %'] = "-"
+                
+                trades_data.append(trade_data)
+            
+            trades_df = pd.DataFrame(trades_data)
+            st.dataframe(trades_df, use_container_width=True)
+        else:
+            st.info("No trades executed yet")
+    
+    with ptab3:
+        st.markdown("### Performance Metrics")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown("#### Returns")
+            st.metric("Total Return", f"{performance['total_return_percentage']:+.2f}%")
+            st.metric("Realized P&L", f"${performance.get('total_realized_pnl', 0):+,.2f}")
+            st.metric("Unrealized P&L", f"${performance.get('unrealized_pnl', 0):+,.2f}")
+        
+        with col2:
+            st.markdown("#### Risk Metrics")
+            st.metric("Max Drawdown", f"{performance.get('max_drawdown', 0):.2f}%")
+            st.metric("Sharpe Ratio", f"{performance.get('sharpe_ratio', 0):.2f}")
+            st.metric("Win Rate", f"{performance['win_rate']:.1f}%")
+        
+        # Performance chart (if we have portfolio history)
+        if len(portfolio.portfolio_history) > 1:
+            st.markdown("#### Portfolio Value Over Time")
+            
+            history_data = []
+            for entry in portfolio.portfolio_history:
+                history_data.append({
+                    'timestamp': datetime.fromisoformat(entry['timestamp']),
+                    'value': entry['value']
+                })
+            
+            history_df = pd.DataFrame(history_data)
+            
+            fig = px.line(
+                history_df, 
+                x='timestamp', 
+                y='value',
+                title='Portfolio Value Over Time',
+                labels={'value': 'Portfolio Value ($)', 'timestamp': 'Time'}
+            )
+            fig.update_layout(showlegend=False)
+            st.plotly_chart(fig, use_container_width=True)
+    
+    with ptab4:
+        st.markdown("### Portfolio Settings")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown("#### Portfolio Actions")
+            
+            if st.button("💾 Save Portfolio State", help="Save current portfolio to file"):
+                if portfolio.save_portfolio_state():
+                    st.success("Portfolio state saved successfully!")
+                else:
+                    st.error("Failed to save portfolio state")
+            
+            if st.button("🔄 Load Portfolio State", help="Load portfolio from file"):
+                if portfolio.load_portfolio_state():
+                    st.success("Portfolio state loaded successfully!")
+                    st.rerun()
+                else:
+                    st.warning("No saved portfolio state found")
+            
+            if st.button("🗑️ Reset Portfolio", help="Reset portfolio to starting balance", type="secondary"):
+                if st.button("⚠️ Confirm Reset", help="This will clear all positions and trades"):
+                    st.session_state.virtual_portfolio = create_virtual_portfolio(10000.0)
+                    st.success("Portfolio reset to $10,000 starting balance")
+                    st.rerun()
+        
+        with col2:
+            st.markdown("#### Trading Settings")
+            
+            # Default position size setting
+            default_position_size = st.number_input(
+                "Default Position Size ($)",
+                min_value=100,
+                max_value=5000,
+                value=500,
+                step=100,
+                help="Default USD amount for paper trades"
+            )
+            
+            # Store in session state
+            st.session_state.default_position_size = default_position_size
+            
+            st.markdown("#### Portfolio Information")
+            st.write(f"**Starting Balance:** ${portfolio.starting_balance:,.2f}")
+            st.write(f"**Total Trades:** {portfolio.total_trades}")
+            st.write(f"**Winning Trades:** {portfolio.winning_trades}")
+            st.write(f"**Losing Trades:** {portfolio.losing_trades}")
+    
+    with ptab5:
+        st.markdown("### Automated Paper Trading")
+        
+        auto_engine = st.session_state.auto_trading_engine
+        status = auto_engine.get_status()
+        
+        # Status overview
+        col1, col2, col3, col4 = st.columns(4)
+        
+        with col1:
+            status_text = "🟢 Active" if status['enabled'] else "🔴 Inactive"
+            st.metric("Auto-Trading Status", status_text)
+        
+        with col2:
+            st.metric("Auto-Trades Executed", status['auto_trades_executed'])
+        
+        with col3:
+            st.metric("Current Positions", f"{status['current_positions']}/{status['max_positions']}")
+        
+        with col4:
+            st.metric("Min Confidence", f"{status['min_confidence_threshold']:.0f}%")
+        
+        st.markdown("---")
+        
+        # Control panel
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown("#### Auto-Trading Controls")
+            
+            if not status['enabled']:
+                if st.button("🚀 Start Auto-Trading", help="Start automated paper trading"):
+                    if auto_engine.start_monitoring():
+                        st.success("Auto-trading started!")
+                        st.rerun()
+                    else:
+                        st.error("Failed to start auto-trading")
+            else:
+                if st.button("⏹️ Stop Auto-Trading", help="Stop automated paper trading"):
+                    auto_engine.stop_monitoring()
+                    st.success("Auto-trading stopped!")
+                    st.rerun()
+            
+            if st.button("🧹 Clear Alert Cache", help="Clear processed alerts cache"):
+                auto_engine.clear_processed_alerts()
+                st.success("Alert cache cleared!")
+            
+            # Manual trade execution
+            st.markdown("#### Manual Signal Trading")
+            
+            if st.button("🔍 Scan & Trade High-Confidence Signals", help="Manually scan for and execute high-confidence trades"):
+                with st.spinner("Scanning for high-confidence signals..."):
+                    try:
+                        # Get active alerts
+                        active_alerts = st.session_state.alert_manager.get_active_alerts()
+                        high_conf_alerts = [
+                            alert for alert in active_alerts 
+                            if alert['confidence_score'] >= status['min_confidence_threshold']
+                            and alert['signal_type'] in ['STRONG_BUY', 'BUY']
+                        ]
+                        
+                        if high_conf_alerts:
+                            trades_executed = 0
+                            for alert in high_conf_alerts[:3]:  # Limit to 3 trades
+                                # Get current price
+                                try:
+                                    analyzed_df = st.session_state.coingecko_api.get_analyzed_solana_tokens(limit=50)
+                                    if not analyzed_df.empty:
+                                        symbol_data = analyzed_df[analyzed_df['symbol'] == alert['symbol']]
+                                        if not symbol_data.empty:
+                                            current_price = float(symbol_data.iloc[0]['current_price'])
+                                            
+                                            signal_data = {
+                                                'symbol': alert['symbol'],
+                                                'signal': alert['signal_type'],
+                                                'current_price': current_price,
+                                                'confidence_score': alert['confidence_score']
+                                            }
+                                            
+                                            result = execute_signal_trade(portfolio, signal_data, status['default_position_size'])
+                                            if result.get('success', False):
+                                                trades_executed += 1
+                                except Exception as e:
+                                    st.error(f"Error trading {alert['symbol']}: {e}")
+                            
+                            if trades_executed > 0:
+                                st.success(f"✅ Executed {trades_executed} high-confidence trades!")
+                                st.rerun()
+                            else:
+                                st.warning("No trades could be executed")
+                        else:
+                            st.info("No high-confidence signals found")
+                    except Exception as e:
+                        st.error(f"Error scanning signals: {e}")
+        
+        with col2:
+            st.markdown("#### Auto-Trading Settings")
+            
+            # Settings form
+            with st.form("auto_trading_settings"):
+                new_min_confidence = st.slider(
+                    "Minimum Confidence Threshold (%)",
+                    min_value=50,
+                    max_value=100,
+                    value=int(status['min_confidence_threshold']),
+                    step=5,
+                    help="Only trade signals with this confidence or higher"
+                )
+                
+                new_position_size = st.number_input(
+                    "Default Position Size ($)",
+                    min_value=100,
+                    max_value=2000,
+                    value=int(status['default_position_size']),
+                    step=100,
+                    help="Default USD amount per auto-trade"
+                )
+                
+                new_max_positions = st.number_input(
+                    "Maximum Positions",
+                    min_value=1,
+                    max_value=20,
+                    value=status['max_positions'],
+                    step=1,
+                    help="Maximum number of open positions"
+                )
+                
+                new_cooldown = st.number_input(
+                    "Cooldown Period (seconds)",
+                    min_value=60,
+                    max_value=3600,
+                    value=status['cooldown_period'],
+                    step=60,
+                    help="Minimum time between trades for same symbol"
+                )
+                
+                if st.form_submit_button("Update Settings"):
+                    auto_engine.update_settings(
+                        min_confidence_threshold=new_min_confidence,
+                        default_position_size=new_position_size,
+                        max_positions=new_max_positions,
+                        cooldown_period=new_cooldown
+                    )
+                    st.success("Settings updated!")
+                    st.rerun()
+            
+            st.markdown("#### System Information")
+            st.write(f"**Monitoring Thread:** {'Active' if status['monitoring_active'] else 'Inactive'}")
+            st.write(f"**Processed Alerts:** {status['processed_alerts_count']}")
+            st.write(f"**Cooldown Period:** {status['cooldown_period']} seconds")
+        
+        # Recent auto-trading activity
+        st.markdown("---")
+        st.markdown("#### Auto-Trading Activity")
+        
+        if portfolio.trade_history:
+            # Filter for recent trades (last 10)
+            recent_auto_trades = portfolio.trade_history[-10:]
+            
+            if recent_auto_trades:
+                st.markdown("**Recent Automated Trades:**")
+                
+                for trade in reversed(recent_auto_trades):  # Show newest first
+                    timestamp = datetime.fromisoformat(trade['timestamp'])
+                    time_str = timestamp.strftime("%H:%M:%S")
+                    
+                    if trade['side'] == 'BUY':
+                        st.write(f"🟢 {time_str} - BUY {trade['symbol']} - ${trade['total_value']:,.2f}")
+                    else:
+                        pnl = trade.get('pnl', 0)
+                        pnl_color = "🟢" if pnl > 0 else "🔴"
+                        st.write(f"{pnl_color} {time_str} - SELL {trade['symbol']} - P&L: ${pnl:+,.2f}")
+            else:
+                st.info("No automated trades executed yet")
+        else:
+            st.info("No trading activity yet")
+
 def main():
     """Main dashboard application"""
     
@@ -1382,7 +1846,7 @@ def main():
     display_alert_banner()
     
     # Main content tabs
-    tab1, tab2, tab3, tab4, tab5 = st.tabs(["Token Analysis", "Portfolio", "Alert Analytics", "Data Export", "ML Training"])
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Token Analysis", "Portfolio", "Alert Analytics", "Data Export", "ML Training", "Paper Trading"])
     
     with tab1:
         display_token_analysis()
@@ -1398,6 +1862,9 @@ def main():
     
     with tab5:
         display_ml_training()
+    
+    with tab6:
+        display_paper_trading()
     
     # Auto-refresh controls
     st.markdown("---")

@@ -1,0 +1,61 @@
+{
+  "starting_balance": 10000.0,
+  "cash_balance": 10000.0,
+  "positions": {
+    "SOL": {
+      "quantity": 1.259219284043894,
+      "avg_price": 25.5,
+      "total_cost": 32.1100917431193
+    }
+  },
+  "trade_history": [
+    {
+      "timestamp": "2025-08-22T00:50:03.775427",
+      "symbol": "SOL",
+      "side": "BUY",
+      "quantity": 19.607843137254903,
+      "price": 25.5,
+      "total_value": 500.00000000000006,
+      "signal_data": {
+        "symbol": "SOL",
+        "signal": "STRONG_BUY",
+        "current_price": 25.5,
+        "confidence_score": 92.5
+      },
+      "cash_balance_after": 9500.0,
+      "trade_id": "BUY_SOL_20250822_005003"
+    },
+    {
+      "timestamp": "2025-08-22T00:50:03.806097",
+      "symbol": "SOL",
+      "side": "SELL",
+      "quantity": 18.34862385321101,
+      "price": 27.25,
+      "total_value": 500.0,
+      "pnl": 32.11009174311927,
+      "pnl_percentage": 6.862745098039216,
+      "avg_cost": 25.5,
+      "signal_data": {
+        "symbol": "SOL",
+        "signal": "SELL",
+        "current_price": 27.25,
+        "confidence_score": 88.0
+      },
+      "cash_balance_after": 10000.0,
+      "remaining_position": 1.259219284043894,
+      "trade_id": "SELL_SOL_20250822_005003"
+    }
+  ],
+  "portfolio_history": [
+    {
+      "timestamp": "2025-08-22T00:50:03.774918",
+      "value": 10000.0,
+      "cash": 10000.0,
+      "positions": {}
+    }
+  ],
+  "total_trades": 2,
+  "winning_trades": 1,
+  "losing_trades": 0,
+  "last_saved": "2025-08-22T00:50:03.806148"
+}
