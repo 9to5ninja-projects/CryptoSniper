@@ -6,16 +6,15 @@ Professional multi-chain trading intelligence platform
 
 import sys
 import os
-import subprocess
 from pathlib import Path
 
 def check_dependencies():
     """Check if required dependencies are installed"""
     try:
-        import streamlit
+        import PyQt6
         import pandas
         import plotly
-        import ccxt
+        import requests
         return True
     except ImportError as e:
         print(f"Missing dependencies: {e}")
@@ -33,33 +32,15 @@ def main():
     if not check_dependencies():
         sys.exit(1)
     
-    # Get project root
-    project_root = Path(__file__).parent
-    dashboard_path = project_root / "dashboard" / "streamlit_app.py"
+    print("✅ All dependencies loaded successfully!")
+    print("🚀 Ready for development...")
     
-    if not dashboard_path.exists():
-        print(f"Error: Dashboard file not found at {dashboard_path}")
-        sys.exit(1)
-    
-    # Launch Streamlit dashboard
-    print(f"Starting dashboard...")
-    print(f"Dashboard will open at: http://localhost:8501")
-    print("Press Ctrl+C to stop the application")
-    print("-" * 60)
-    
+    # For now, just test the Kraken API
     try:
-        subprocess.run([
-            sys.executable, "-m", "streamlit", "run", 
-            str(dashboard_path),
-            "--server.port=8501",
-            "--server.address=localhost",
-            "--browser.gatherUsageStats=false"
-        ])
-    except KeyboardInterrupt:
-        print("\nShutting down Crypto Sniper Dashboard...")
-    except Exception as e:
-        print(f"Error starting dashboard: {e}")
-        sys.exit(1)
+        from api_clients.kraken_api import test_kraken_api
+        test_kraken_api()
+    except ImportError as e:
+        print(f"Error importing Kraken API: {e}")
 
 if __name__ == "__main__":
     main()
