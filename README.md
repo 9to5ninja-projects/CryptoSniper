@@ -16,11 +16,17 @@ Professional multi-chain trading intelligence platform with real-time analytics 
 - Interactive Plotly charts with multi-timeframe analysis
 - Real-time opportunity detection
 
-### Phantom Wallet Integration
-- Live portfolio monitoring via Solana RPC
+### Portfolio Tracker
+- Live Solana wallet monitoring via RPC
 - SOL + SPL token balance tracking
-- Auto-refresh capabilities (30s to 5min intervals)
-- Portfolio valuation with USD pricing
+- Real-time portfolio valuation in USD
+- Portfolio allocation visualization
+
+### Advanced Features
+- 🤖 ML-Enhanced Signal Generation with scikit-learn
+- 📊 Alert System with customizable thresholds
+- 📈 Data Export & Scheduling capabilities
+- 🔄 Real-time auto-refresh functionality
 
 ## Installation
 
@@ -36,8 +42,10 @@ source crypto_env/bin/activate  # Windows: crypto_env\Scripts\activate
 # Install dependencies
 pip install -r requirements.txt
 
-# Run application
+# Launch Streamlit Dashboard
 python main.py
+# OR directly with streamlit
+streamlit run dashboard/streamlit_app.py
 ```
 
 ## Project Structure

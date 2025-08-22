@@ -930,6 +930,441 @@ def display_export_management():
         else:
             st.info("📋 No export history available yet. Run some exports to see history here.")
 
+def display_portfolio_tracker():
+    """Display portfolio/wallet tracking interface"""
+    st.markdown("## 💼 Portfolio Tracker")
+    st.markdown("Track your Solana wallet balances and portfolio value")
+    
+    try:
+        # Import wallet API
+        import sys
+        import os
+        project_root = os.path.dirname(os.path.dirname(__file__))
+        if project_root not in sys.path:
+            sys.path.insert(0, project_root)
+        
+        from api_clients.wallet_tracker import SolanaWalletAPI
+        
+        # Initialize wallet API
+        if 'wallet_api' not in st.session_state:
+            st.session_state.wallet_api = SolanaWalletAPI()
+        
+        wallet_api = st.session_state.wallet_api
+        
+        # Wallet Connection Section
+        st.markdown("### 🔗 Wallet Connection")
+        
+        col1, col2 = st.columns([3, 1])
+        
+        with col1:
+            # Wallet address input
+            wallet_address = st.text_input(
+                "Enter Solana Wallet Address",
+                placeholder="e.g., 9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM",
+                help="Enter your Solana wallet public address to track portfolio"
+            )
+            
+            # Store wallet address in session state
+            if wallet_address:
+                st.session_state.wallet_address = wallet_address
+        
+        with col2:
+            st.markdown("#### Quick Actions")
+            if st.button("🔄 Refresh Portfolio"):
+                if 'portfolio_data' in st.session_state:
+                    del st.session_state.portfolio_data
+                st.rerun()
+            
+            if st.button("🗑️ Clear Wallet"):
+                if 'wallet_address' in st.session_state:
+                    del st.session_state.wallet_address
+                if 'portfolio_data' in st.session_state:
+                    del st.session_state.portfolio_data
+                st.rerun()
+        
+        # Validate wallet address
+        if wallet_address:
+            is_valid = wallet_api.validate_wallet_address(wallet_address)
+            
+            if is_valid:
+                st.success(f"✅ Valid wallet address: `{wallet_address[:8]}...{wallet_address[-8:]}`")
+                
+                # Portfolio Overview Section
+                st.markdown("### 📊 Portfolio Overview")
+                
+                # Load portfolio data
+                if st.button("📈 Load Portfolio", type="primary") or 'portfolio_data' in st.session_state:
+                    
+                    if 'portfolio_data' not in st.session_state:
+                        with st.spinner("Loading portfolio data..."):
+                            try:
+                                portfolio_df = wallet_api.build_portfolio(wallet_address)
+                                st.session_state.portfolio_data = portfolio_df
+                            except Exception as e:
+                                st.error(f"❌ Error loading portfolio: {e}")
+                                return
+                    
+                    portfolio_df = st.session_state.portfolio_data
+                    
+                    if not portfolio_df.empty:
+                        # Portfolio Summary
+                        total_value = portfolio_df['Value'].sum()
+                        sol_balance = portfolio_df[portfolio_df['Symbol'] == 'SOL']['Balance'].iloc[0] if 'SOL' in portfolio_df['Symbol'].values else 0
+                        token_count = len(portfolio_df) - 1  # Exclude SOL
+                        
+                        # Summary metrics
+                        col1, col2, col3, col4 = st.columns(4)
+                        
+                        with col1:
+                            st.metric("💰 Total Value", f"${total_value:.2f}")
+                        
+                        with col2:
+                            st.metric("🟣 SOL Balance", f"{sol_balance:.4f} SOL")
+                        
+                        with col3:
+                            st.metric("🪙 Token Count", f"{token_count} tokens")
+                        
+                        with col4:
+                            sol_price = wallet_api.get_sol_price()
+                            st.metric("📈 SOL Price", f"${sol_price:.2f}")
+                        
+                        # Portfolio Breakdown
+                        st.markdown("### 💎 Portfolio Breakdown")
+                        
+                        # Format the dataframe for display
+                        display_df = portfolio_df.copy()
+                        display_df['Balance'] = display_df['Balance'].apply(lambda x: f"{x:.6f}")
+                        display_df['Price'] = display_df['Price'].apply(lambda x: f"${x:.4f}")
+                        display_df['Value'] = display_df['Value'].apply(lambda x: f"${x:.2f}")
+                        
+                        # Display portfolio table
+                        st.dataframe(
+                            display_df[['Symbol', 'Name', 'Balance', 'Price', 'Value', 'Type']],
+                            use_container_width=True,
+                            hide_index=True
+                        )
+                        
+                        # Portfolio Allocation Chart
+                        if len(portfolio_df) > 1:
+                            st.markdown("### 📊 Portfolio Allocation")
+                            
+                            # Create pie chart data
+                            chart_data = portfolio_df[['Symbol', 'Value']].copy()
+                            chart_data = chart_data[chart_data['Value'] > 0]
+                            
+                            if not chart_data.empty:
+                                # Use Streamlit's built-in chart
+                                st.bar_chart(chart_data.set_index('Symbol')['Value'])
+                        
+                        # Wallet Activity Section
+                        st.markdown("### 🔍 Wallet Information")
+                        
+                        col1, col2 = st.columns(2)
+                        
+                        with col1:
+                            st.markdown("**Wallet Address:**")
+                            st.code(wallet_address, language="text")
+                            
+                            st.markdown("**Network:**")
+                            st.info("🌐 Solana Mainnet")
+                        
+                        with col2:
+                            st.markdown("**Last Updated:**")
+                            from datetime import datetime
+                            st.info(f"🕒 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+                            
+                            st.markdown("**Data Source:**")
+                            st.info("🔗 Solana RPC + CoinGecko")
+                        
+                        # Additional Features
+                        with st.expander("🔧 Advanced Features"):
+                            st.markdown("**Coming Soon:**")
+                            st.write("- 📈 Historical portfolio tracking")
+                            st.write("- 🚨 Balance change alerts")
+                            st.write("- 💱 Token price tracking")
+                            st.write("- 📊 Performance analytics")
+                            st.write("- 🔄 Auto-refresh intervals")
+                    
+                    else:
+                        st.warning("⚠️ No portfolio data found for this wallet address")
+                        st.info("💡 This could mean:")
+                        st.write("- The wallet has no SOL or token balances")
+                        st.write("- The wallet address is new/unused")
+                        st.write("- There was an issue connecting to Solana RPC")
+            
+            else:
+                st.error("❌ Invalid Solana wallet address format")
+                st.info("💡 Solana addresses are 32-44 characters long and base58 encoded")
+        
+        else:
+            # Welcome section when no wallet is connected
+            st.markdown("### 👋 Welcome to Portfolio Tracker")
+            
+            col1, col2 = st.columns([2, 1])
+            
+            with col1:
+                st.markdown("""
+                **Track your Solana portfolio in real-time:**
+                
+                🔗 **Connect Your Wallet**
+                - Enter your Solana wallet public address
+                - View SOL and SPL token balances
+                - See total portfolio value in USD
+                
+                📊 **Portfolio Analytics**
+                - Real-time balance tracking
+                - Token allocation breakdown
+                - Price and value calculations
+                
+                🔄 **Live Updates**
+                - Refresh portfolio data anytime
+                - Connect to Solana mainnet RPC
+                - Get latest token prices
+                """)
+            
+            with col2:
+                st.markdown("#### 🔒 Privacy & Security")
+                st.info("""
+                **Your wallet is safe:**
+                - Only public address needed
+                - Read-only access
+                - No private keys required
+                - No transaction capabilities
+                """)
+                
+                st.markdown("#### 📝 Example Address")
+                st.code("9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM", language="text")
+                st.caption("*Sample public address for testing*")
+    
+    except ImportError as e:
+        st.error(f"❌ Wallet tracking components not available: {e}")
+        st.info("💡 Check wallet_tracker.py configuration")
+    except Exception as e:
+        st.error(f"❌ Error loading portfolio interface: {e}")
+        st.info("🔧 Check wallet system configuration and try again")
+
+def display_ml_training():
+    """Display ML training interface"""
+    st.markdown("## 🤖 ML Signal Enhancement")
+    st.markdown("Train and manage machine learning models for enhanced signal generation")
+    
+    try:
+        # Import ML components
+        import sys
+        import os
+        project_root = os.path.dirname(os.path.dirname(__file__))
+        if project_root not in sys.path:
+            sys.path.insert(0, project_root)
+        
+        from solana.signal_generator import SolanaSignalGenerator
+        from data.exports.export_scheduler import ExportScheduler
+        
+        # Initialize ML generator
+        if 'ml_generator' not in st.session_state:
+            st.session_state.ml_generator = SolanaSignalGenerator(enable_ml=True)
+        
+        ml_gen = st.session_state.ml_generator
+        
+        # ML Status Section
+        st.markdown("### 📊 ML Model Status")
+        
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            ml_status = ml_gen.get_ml_status()
+            if ml_status.get('ml_enabled', False):
+                st.success("✅ ML Enabled")
+            else:
+                st.error("❌ ML Disabled")
+        
+        with col2:
+            if ml_status.get('is_trained', False):
+                st.success("✅ Model Trained")
+            else:
+                st.warning("⚠️ Model Not Trained")
+        
+        with col3:
+            feature_count = ml_status.get('feature_count', 0)
+            st.info(f"📈 Features: {feature_count}")
+        
+        # Training Section
+        st.markdown("### 🎯 Model Training")
+        
+        col1, col2 = st.columns([2, 1])
+        
+        with col1:
+            st.markdown("#### Training Data")
+            
+            # Training data source selection
+            data_source = st.selectbox(
+                "Select Training Data Source",
+                ["Generate Sample Data", "Use Export History", "Upload CSV"],
+                help="Choose where to get training data from"
+            )
+            
+            if data_source == "Generate Sample Data":
+                sample_size = st.slider("Sample Size", 20, 200, 50, help="Number of sample data points to generate")
+                
+                if st.button("🚀 Train Model with Sample Data", type="primary"):
+                    with st.spinner("Generating sample data and training model..."):
+                        try:
+                            # Generate sample training data
+                            training_data = generate_sample_training_data(sample_size)
+                            
+                            # Train model
+                            results = ml_gen.train_ml_model(training_data)
+                            
+                            if 'error' in results:
+                                st.error(f"❌ Training failed: {results['error']}")
+                            else:
+                                st.success("✅ Model trained successfully!")
+                                
+                                # Display results
+                                col_a, col_b = st.columns(2)
+                                with col_a:
+                                    st.metric("Training Samples", results.get('training_samples', 0))
+                                    st.metric("Train Accuracy", f"{results.get('train_accuracy', 0):.3f}")
+                                with col_b:
+                                    st.metric("Test Samples", results.get('test_samples', 0))
+                                    st.metric("Test Accuracy", f"{results.get('test_accuracy', 0):.3f}")
+                                
+                                st.info(f"Signal Classes: {', '.join(results.get('signal_classes', []))}")
+                                
+                        except Exception as e:
+                            st.error(f"❌ Training error: {e}")
+            
+            elif data_source == "Use Export History":
+                st.info("📋 This feature will use historical export data for training")
+                if st.button("🚀 Train with Export History"):
+                    st.warning("⚠️ Export history training not yet implemented")
+            
+            elif data_source == "Upload CSV":
+                uploaded_file = st.file_uploader("Upload Training Data CSV", type=['csv'])
+                if uploaded_file and st.button("🚀 Train with Uploaded Data"):
+                    st.warning("⚠️ CSV upload training not yet implemented")
+        
+        with col2:
+            st.markdown("#### Quick Actions")
+            
+            if st.button("🔄 Refresh Status"):
+                st.rerun()
+            
+            if st.button("🗑️ Reset Model"):
+                if 'ml_generator' in st.session_state:
+                    del st.session_state.ml_generator
+                st.success("Model reset! Refresh to reinitialize.")
+        
+        # Model Performance Section
+        if ml_status.get('is_trained', False):
+            st.markdown("### 📈 Model Performance")
+            
+            # Feature Importance
+            importance = ml_gen.ml_generator.get_feature_importance() if ml_gen.ml_generator else {}
+            
+            if importance:
+                st.markdown("#### 🎯 Feature Importance")
+                
+                # Create importance chart
+                import pandas as pd
+                importance_df = pd.DataFrame(list(importance.items()), columns=['Feature', 'Importance'])
+                importance_df = importance_df.head(10)  # Top 10 features
+                
+                st.bar_chart(importance_df.set_index('Feature'))
+                
+                # Feature importance table
+                with st.expander("📊 Detailed Feature Importance"):
+                    st.dataframe(importance_df, use_container_width=True)
+            
+            # Test Signal Generation
+            st.markdown("#### 🧪 Test Signal Generation")
+            
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                st.markdown("**Test Data Input**")
+                test_price = st.number_input("Current Price", value=1.50, min_value=0.01)
+                test_change_1h = st.number_input("1h Change %", value=2.5, min_value=-50.0, max_value=50.0)
+                test_change_24h = st.number_input("24h Change %", value=8.3, min_value=-50.0, max_value=50.0)
+                test_volume = st.number_input("24h Volume", value=1000000, min_value=1000)
+                test_mcap = st.number_input("Market Cap", value=50000000, min_value=100000)
+            
+            with col2:
+                if st.button("🎯 Generate Test Signal"):
+                    test_data = {
+                        'current_price': test_price,
+                        'price_change_1h': test_change_1h,
+                        'price_change_24h': test_change_24h,
+                        'volume_24h': test_volume,
+                        'market_cap': test_mcap,
+                        'symbol': 'TEST',
+                        'name': 'Test Token'
+                    }
+                    
+                    signal = ml_gen.generate_signal(test_data)
+                    
+                    st.markdown("**Generated Signal:**")
+                    st.success(f"🎯 Signal: **{signal.get('signal', 'N/A')}**")
+                    st.info(f"📊 Confidence: **{signal.get('confidence_score', 0)}%**")
+                    st.info(f"🔧 Type: **{signal.get('signal_type', 'N/A')}**")
+                    
+                    if 'ml_enhancement' in signal and signal['ml_enhancement']:
+                        ml_info = signal['ml_enhancement']
+                        st.markdown("**ML Enhancement Details:**")
+                        st.write(f"- ML Signal: {ml_info.get('ml_signal', 'N/A')}")
+                        st.write(f"- ML Confidence: {ml_info.get('ml_confidence', 0):.3f}")
+                        st.write(f"- Rule Signal: {ml_info.get('rule_signal', 'N/A')}")
+                        st.write(f"- Signals Agree: {ml_info.get('signals_agree', False)}")
+        
+        else:
+            st.info("🎯 Train a model to see performance metrics and test signal generation")
+    
+    except ImportError as e:
+        st.error(f"❌ ML components not available: {e}")
+        st.info("💡 Install scikit-learn to enable ML features: `pip install scikit-learn`")
+    except Exception as e:
+        st.error(f"❌ Error loading ML interface: {e}")
+        st.info("🔧 Check ML system configuration and try again")
+
+def generate_sample_training_data(num_samples=50):
+    """Generate sample training data for ML training"""
+    import random
+    from datetime import datetime, timedelta
+    
+    training_data = []
+    
+    for i in range(num_samples):
+        # Generate realistic crypto data
+        price_change_24h = random.uniform(-20, 20)
+        price_change_1h = random.uniform(-5, 5)
+        volume_24h = random.uniform(100000, 10000000)
+        market_cap = random.uniform(1000000, 1000000000)
+        current_price = random.uniform(0.01, 100)
+        
+        # Simple rule-based signal assignment for training
+        if price_change_24h > 10:
+            signal = 'BUY'
+        elif price_change_24h < -10:
+            signal = 'AVOID'
+        elif abs(price_change_24h) < 3:
+            signal = 'HOLD'
+        else:
+            signal = 'WATCH'
+        
+        data_point = {
+            'timestamp': (datetime.now() - timedelta(hours=i)).isoformat(),
+            'symbol': f'TOKEN{i}',
+            'signal': signal,
+            'current_price': current_price,
+            'price_change_1h': price_change_1h,
+            'price_change_24h': price_change_24h,
+            'volume_24h': volume_24h,
+            'market_cap': market_cap
+        }
+        
+        training_data.append(data_point)
+    
+    return training_data
+
 def main():
     """Main dashboard application"""
     
@@ -947,16 +1382,22 @@ def main():
     display_alert_banner()
     
     # Main content tabs
-    tab1, tab2, tab3 = st.tabs(["Token Analysis", "Alert Analytics", "Data Export"])
+    tab1, tab2, tab3, tab4, tab5 = st.tabs(["Token Analysis", "Portfolio", "Alert Analytics", "Data Export", "ML Training"])
     
     with tab1:
         display_token_analysis()
     
     with tab2:
-        display_alert_analytics()
+        display_portfolio_tracker()
     
     with tab3:
+        display_alert_analytics()
+    
+    with tab4:
         display_export_management()
+    
+    with tab5:
+        display_ml_training()
     
     # Auto-refresh controls
     st.markdown("---")

@@ -3,11 +3,24 @@ import time
 import pandas as pd
 from typing import Dict, List, Optional
 import logging
+import os
+import sys
+
+# Add project root to path for ML integration
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+try:
+    from solana.signal_generator import SolanaSignalGenerator
+    ML_AVAILABLE = True
+except ImportError:
+    ML_AVAILABLE = False
 
 class CoinGeckoAPI:
     """CoinGecko API client for Solana ecosystem tokens"""
     
-    def __init__(self, api_key: Optional[str] = None):
+    def __init__(self, api_key: Optional[str] = None, enable_ml: bool = True):
         self.base_url = "https://api.coingecko.com/api/v3"
         self.api_key = api_key
         self.session = requests.Session()
@@ -18,6 +31,17 @@ class CoinGeckoAPI:
         if api_key:
             headers["x-cg-demo-api-key"] = api_key
         self.session.headers.update(headers)
+        
+        # Initialize ML-enhanced signal generator
+        self.signal_generator = None
+        if ML_AVAILABLE and enable_ml:
+            try:
+                self.signal_generator = SolanaSignalGenerator(enable_ml=True)
+                logging.info("ML-enhanced signal generation enabled")
+            except Exception as e:
+                logging.warning(f"ML signal generator initialization failed: {e}")
+        else:
+            logging.info("Using rule-based signal generation only")
     
     def _rate_limit(self):
         """Enforce rate limiting"""
@@ -87,7 +111,54 @@ class CoinGeckoAPI:
             return []
     
     def analyze_sniper_opportunities(self, tokens: List[Dict]) -> pd.DataFrame:
-        """Analyze tokens for sniping potential"""
+        """Analyze tokens for sniper opportunities with ML enhancement"""
+        analyzed_tokens = []
+        
+        # Use ML-enhanced signal generator if available
+        if self.signal_generator:
+            try:
+                # Generate ML-enhanced signals for all tokens
+                enhanced_signals = self.signal_generator.generate_signals_batch(tokens)
+                
+                for signal in enhanced_signals:
+                    try:
+                        # Find original token data
+                        original_token = next((t for t in tokens if t.get('symbol', '').upper() == signal.get('symbol', '')), {})
+                        
+                        # Create analysis combining original data with enhanced signal
+                        token_analysis = original_token.copy()
+                        token_analysis.update({
+                            'momentum_score': signal.get('momentum_score', 0),
+                            'signal': signal.get('signal', 'HOLD'),
+                            'confidence_score': signal.get('confidence_score', 50),
+                            'volume_mcap_ratio': signal.get('volume_mcap_ratio', 0),
+                            'signal_type': signal.get('signal_type', 'rule_based'),
+                            'risk_level': self._assess_risk_level(signal.get('market_cap', 0))
+                        })
+                        
+                        # Add ML enhancement info if available
+                        if 'ml_enhancement' in signal:
+                            token_analysis['ml_enhancement'] = signal['ml_enhancement']
+                        
+                        analyzed_tokens.append(token_analysis)
+                        
+                    except Exception as e:
+                        logging.error(f"Error processing enhanced signal for {signal.get('symbol', 'unknown')}: {e}")
+                        continue
+                        
+            except Exception as e:
+                logging.error(f"Error in ML-enhanced analysis: {e}")
+                # Fall back to rule-based analysis
+                return self._analyze_tokens_rule_based(tokens)
+        else:
+            # Use rule-based analysis
+            return self._analyze_tokens_rule_based(tokens)
+        
+        df = pd.DataFrame(analyzed_tokens)
+        return df.sort_values('confidence_score', ascending=False) if not df.empty else df
+    
+    def _analyze_tokens_rule_based(self, tokens: List[Dict]) -> pd.DataFrame:
+        """Fallback rule-based analysis (original logic)"""
         analyzed_tokens = []
         
         for token in tokens:
@@ -130,31 +201,29 @@ class CoinGeckoAPI:
                 elif volume_to_mcap > 20:
                     momentum_score += 10
                 
-                # Risk assessment
-                if market_cap > 100000000:  # $100M+
-                    risk_level = "LOW"
-                elif market_cap > 10000000:  # $10M+
-                    risk_level = "MEDIUM"
-                else:
-                    risk_level = "HIGH"
-                
                 # Signal generation
                 if momentum_score >= 70:
                     signal = "STRONG BUY"
+                    confidence = 85
                 elif momentum_score >= 50:
                     signal = "BUY"
+                    confidence = 70
                 elif momentum_score >= 30:
                     signal = "WATCH"
+                    confidence = 55
                 else:
                     signal = "AVOID"
+                    confidence = 40
                 
                 # Add analysis to token data
                 token_analysis = token.copy()
                 token_analysis.update({
                     'momentum_score': round(momentum_score, 1),
-                    'risk_level': risk_level,
+                    'risk_level': self._assess_risk_level(market_cap),
                     'signal': signal,
-                    'volume_mcap_ratio': round(volume_to_mcap, 2)
+                    'confidence_score': confidence,
+                    'volume_mcap_ratio': round(volume_to_mcap, 2),
+                    'signal_type': 'rule_based'
                 })
                 
                 analyzed_tokens.append(token_analysis)
@@ -165,6 +234,15 @@ class CoinGeckoAPI:
         
         df = pd.DataFrame(analyzed_tokens)
         return df.sort_values('momentum_score', ascending=False) if not df.empty else df
+    
+    def _assess_risk_level(self, market_cap: float) -> str:
+        """Assess risk level based on market cap"""
+        if market_cap > 100000000:  # $100M+
+            return "LOW"
+        elif market_cap > 10000000:  # $10M+
+            return "MEDIUM"
+        else:
+            return "HIGH"
     
     def get_analyzed_solana_tokens(self, limit: int = 25) -> pd.DataFrame:
         """Get Solana tokens with sniper analysis"""

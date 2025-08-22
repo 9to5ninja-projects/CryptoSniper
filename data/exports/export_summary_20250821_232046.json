@@ -1,0 +1,58 @@
+{
+  "export_info": {
+    "export_type": "comprehensive_report",
+    "days_back": 7,
+    "export_timestamp": "2025-08-21T23:20:46.403406",
+    "format_type": "both"
+  },
+  "export_results": {
+    "signals": {
+      "csv": "E:\\CryptoSniperDashboard\\data\\exports\\signal_history_7days_20250821_232044.csv",
+      "json": "E:\\CryptoSniperDashboard\\data\\exports\\signal_history_7days_20250821_232044.json"
+    },
+    "alerts": {
+      "csv": "E:\\CryptoSniperDashboard\\data\\exports\\alert_history_7days_20250821_232046.csv",
+      "json": "E:\\CryptoSniperDashboard\\data\\exports\\alert_history_7days_20250821_232046.json"
+    },
+    "performance": {
+      "csv": "E:\\CryptoSniperDashboard\\data\\exports\\performance_data_7days_20250821_232046.csv",
+      "json": "E:\\CryptoSniperDashboard\\data\\exports\\performance_data_7days_20250821_232046.json"
+    },
+    "logs": {
+      "csv": "E:\\CryptoSniperDashboard\\data\\exports\\system_logs_7days_20250821_232046.csv",
+      "json": "E:\\CryptoSniperDashboard\\data\\exports\\system_logs_7days_20250821_232046.json"
+    }
+  },
+  "export_statistics": {
+    "total_exports": 4,
+    "successful_exports": 4,
+    "failed_exports": 0,
+    "last_export_time": "2025-08-21T23:20:46.402570",
+    "export_history": [
+      {
+        "timestamp": "2025-08-21T23:20:46.242427",
+        "export_type": "signal_history",
+        "success": true,
+        "record_count": 50
+      },
+      {
+        "timestamp": "2025-08-21T23:20:46.310661",
+        "export_type": "alert_history",
+        "success": true,
+        "record_count": 21
+      },
+      {
+        "timestamp": "2025-08-21T23:20:46.335106",
+        "export_type": "performance_data",
+        "success": true,
+        "record_count": 7
+      },
+      {
+        "timestamp": "2025-08-21T23:20:46.402582",
+        "export_type": "system_logs",
+        "success": true,
+        "record_count": 504
+      }
+    ]
+  }
+}
