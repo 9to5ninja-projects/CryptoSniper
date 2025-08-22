@@ -11,6 +11,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from api_clients.kraken_api import KrakenAPI
 from api_clients.coingecko_api import CoinGeckoAPI
 from api_clients.arbitrage_engine import ArbitrageEngine
+from api_clients.wallet_tracker import SolanaWalletAPI
 
 class BasicTradingTable(QtWidgets.QTableWidget):
     """Basic table widget for displaying trading data"""
@@ -187,6 +188,169 @@ class ArbitrageTable(QtWidgets.QTableWidget):
                     
                     self.setItem(i, j, item)
 
+class ArbitrageTable(QtWidgets.QTableWidget):
+    """Specialized table for arbitrage opportunities"""
+    
+    def __init__(self):
+        super().__init__()
+        self.setup_table()
+    
+    def setup_table(self):
+        """Configure arbitrage table"""
+        font = QtGui.QFont("Consolas", 9)
+        self.setFont(font)
+        self.setAlternatingRowColors(True)
+        self.setSelectionBehavior(QtWidgets.QTableWidget.SelectionBehavior.SelectRows)
+        self.setEditTriggers(QtWidgets.QTableWidget.EditTrigger.NoEditTriggers)
+        self.setSortingEnabled(True)
+        
+        header = self.horizontalHeader()
+        header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
+    
+    def populate_arbitrage_data(self, df: pd.DataFrame):
+        """Populate table with arbitrage opportunities"""
+        if df.empty:
+            self.setRowCount(1)
+            self.setColumnCount(1)
+            self.setHorizontalHeaderLabels(["Status"])
+            item = QtWidgets.QTableWidgetItem("No arbitrage opportunities found (>0.3% profit)")
+            item.setBackground(QtGui.QColor(255, 248, 220))  # Light yellow
+            self.setItem(0, 0, item)
+            return
+        
+        # Display columns for arbitrage
+        display_columns = ['path', 'profit_percent', 'profit_usd', 'risk_level', 'execution_quality']
+        display_headers = ['Arbitrage Path', 'Profit %', 'Profit (USD)', 'Risk Level', 'Execution Quality']
+        
+        self.setRowCount(len(df))
+        self.setColumnCount(len(display_columns))
+        self.setHorizontalHeaderLabels(display_headers)
+        
+        for i, (_, row) in enumerate(df.iterrows()):
+            for j, col in enumerate(display_columns):
+                if col in row:
+                    value = row[col]
+                    
+                    # Format display values
+                    if col == 'profit_percent':
+                        display_value = f"{value:.3f}%"
+                    elif col == 'profit_usd':
+                        display_value = f"${value:.2f}"
+                    else:
+                        display_value = str(value)
+                    
+                    item = QtWidgets.QTableWidgetItem(display_value)
+                    
+                    # Color coding for arbitrage
+                    if col == 'profit_percent':
+                        if value >= 1.0:  # >1% profit
+                            item.setBackground(QtGui.QColor(144, 238, 144))  # Light green
+                        elif value >= 0.5:  # >0.5% profit
+                            item.setBackground(QtGui.QColor(255, 255, 224))  # Light yellow
+                    
+                    elif col == 'risk_level':
+                        if value == 'LOW':
+                            item.setBackground(QtGui.QColor(144, 238, 144))  # Light green
+                        elif value == 'MEDIUM':
+                            item.setBackground(QtGui.QColor(255, 255, 224))  # Light yellow
+                        elif value == 'HIGH':
+                            item.setBackground(QtGui.QColor(255, 182, 193))  # Light red
+                    
+                    elif col == 'execution_quality':
+                        if value == 'EXCELLENT':
+                            item.setBackground(QtGui.QColor(144, 238, 144))  # Light green
+                        elif value == 'GOOD':
+                            item.setBackground(QtGui.QColor(255, 255, 224))  # Light yellow
+                        else:
+                            item.setBackground(QtGui.QColor(255, 182, 193))  # Light red
+                    
+                    self.setItem(i, j, item)
+
+class WalletTable(QtWidgets.QTableWidget):
+    """Specialized table for wallet portfolio display"""
+    
+    def __init__(self):
+        super().__init__()
+        self.setup_table()
+    
+    def setup_table(self):
+        """Configure wallet table"""
+        font = QtGui.QFont("Consolas", 9)
+        self.setFont(font)
+        self.setAlternatingRowColors(True)
+        self.setSelectionBehavior(QtWidgets.QTableWidget.SelectionBehavior.SelectRows)
+        self.setEditTriggers(QtWidgets.QTableWidget.EditTrigger.NoEditTriggers)
+        self.setSortingEnabled(True)
+        
+        header = self.horizontalHeader()
+        header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
+    
+    def populate_wallet_data(self, df: pd.DataFrame):
+        """Populate table with wallet portfolio data"""
+        if df.empty:
+            self.setRowCount(1)
+            self.setColumnCount(1)
+            self.setHorizontalHeaderLabels(["Status"])
+            item = QtWidgets.QTableWidgetItem("Enter wallet address to view portfolio")
+            item.setBackground(QtGui.QColor(240, 248, 255))  # Light blue
+            self.setItem(0, 0, item)
+            return
+        
+        # Display columns
+        display_columns = ['Symbol', 'Name', 'Balance', 'Price', 'Value', 'Type']
+        display_headers = ['Symbol', 'Token Name', 'Balance', 'Price (USD)', 'Value (USD)', 'Type']
+        
+        self.setRowCount(len(df))
+        self.setColumnCount(len(display_columns))
+        self.setHorizontalHeaderLabels(display_headers)
+        
+        for i, (_, row) in enumerate(df.iterrows()):
+            for j, col in enumerate(display_columns):
+                if col in row:
+                    value = row[col]
+                    
+                    # Format display values
+                    if col == 'Balance':
+                        if row['Symbol'] == 'SOL':
+                            display_value = f"{value:.4f}"
+                        else:
+                            display_value = f"{value:.6f}" if value < 1 else f"{value:.2f}"
+                    elif col == 'Price':
+                        display_value = f"${value:.6f}" if value < 0.01 else f"${value:.4f}"
+                    elif col == 'Value':
+                        if value >= 1000000:
+                            display_value = f"${value/1000000:.2f}M"
+                        elif value >= 1000:
+                            display_value = f"${value/1000:.1f}K"
+                        else:
+                            display_value = f"${value:.2f}"
+                    else:
+                        display_value = str(value)
+                    
+                    item = QtWidgets.QTableWidgetItem(display_value)
+                    
+                    # Color coding
+                    if col == 'Type':
+                        if value == 'Native':
+                            item.setBackground(QtGui.QColor(144, 238, 144))  # Light green for SOL
+                        else:
+                            item.setBackground(QtGui.QColor(173, 216, 230))  # Light blue for SPL
+                    
+                    elif col == 'Value':
+                        if isinstance(value, (int, float)):
+                            if value > 1000000:  # > $1M
+                                item.setBackground(QtGui.QColor(255, 215, 0, 100))  # Gold highlight
+                            elif value > 100000:  # > $100K
+                                item.setBackground(QtGui.QColor(144, 238, 144))  # Light green
+                            elif value > 1000:  # > $1K
+                                item.setBackground(QtGui.QColor(255, 255, 224))  # Light yellow
+                    
+                    self.setItem(i, j, item)
+        
+        # Sort by value (highest first)
+        value_column = display_columns.index('Value')
+        self.sortItems(value_column, QtCore.Qt.SortOrder.DescendingOrder)
+
 class CryptoSniperDashboard(QtWidgets.QMainWindow):
     """Main dashboard window"""
     
@@ -196,13 +360,16 @@ class CryptoSniperDashboard(QtWidgets.QMainWindow):
         # Initialize API clients
         self.kraken_api = KrakenAPI()
         self.coingecko_api = CoinGeckoAPI()
-        self.arbitrage_engine = ArbitrageEngine(min_profit=0.3)  # Add this line
+        self.arbitrage_engine = ArbitrageEngine(min_profit=0.3)
+        self.wallet_api = SolanaWalletAPI()
         
         # Data storage
         self.kraken_df = pd.DataFrame()
         self.solana_df = pd.DataFrame()
-        self.arbitrage_df = pd.DataFrame()  # Add this line
-        self.raw_ticker_data = {}  # Add this line
+        self.arbitrage_df = pd.DataFrame()
+        self.wallet_df = pd.DataFrame()
+        self.raw_ticker_data = {}
+        self.current_wallet_address = ""
         
         self.setup_ui()
         self.setup_timer()
@@ -232,11 +399,10 @@ class CryptoSniperDashboard(QtWidgets.QMainWindow):
         self.kraken_table = BasicTradingTable()
         self.tab_widget.addTab(self.kraken_table, "📈 Kraken Markets")
 
-        # Arbitrage tab - ADD THIS NEW TAB
+        # Arbitrage tab
         arbitrage_widget = QtWidgets.QWidget()
         arbitrage_layout = QtWidgets.QVBoxLayout()
 
-        # Arbitrage info panel
         arb_info = QtWidgets.QLabel("🔄 Triangular Arbitrage Scanner - Detects A→B→C→A profit opportunities (>0.3% after fees)")
         arb_info.setStyleSheet("""
             QLabel {
@@ -260,6 +426,57 @@ class CryptoSniperDashboard(QtWidgets.QMainWindow):
         # Solana tab
         self.solana_table = BasicTradingTable()
         self.tab_widget.addTab(self.solana_table, "🎯 Solana Sniper")
+
+        # Wallet tab
+        wallet_widget = QtWidgets.QWidget()
+        wallet_layout = QtWidgets.QVBoxLayout()
+
+        # Wallet address input
+        wallet_input_layout = QtWidgets.QHBoxLayout()
+        wallet_input_layout.addWidget(QtWidgets.QLabel("Phantom Address:"))
+
+        self.wallet_address_input = QtWidgets.QLineEdit()
+        self.wallet_address_input.setPlaceholderText("Enter your Phantom wallet public address...")
+        self.wallet_address_input.setFont(QtGui.QFont("Consolas", 10))
+        wallet_input_layout.addWidget(self.wallet_address_input)
+
+        self.load_wallet_btn = QtWidgets.QPushButton("📊 Load Portfolio")
+        self.load_wallet_btn.clicked.connect(self.load_wallet_portfolio)
+        self.load_wallet_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #9c27b0;
+                color: white;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 4px;
+                font-weight: bold;
+            }
+            QPushButton:hover { background-color: #7b1fa2; }
+        """)
+        wallet_input_layout.addWidget(self.load_wallet_btn)
+
+        wallet_layout.addLayout(wallet_input_layout)
+
+        # Wallet info panel
+        wallet_info = QtWidgets.QLabel("👻 Phantom Wallet Tracker - Enter your public address to view SOL and SPL token balances")
+        wallet_info.setStyleSheet("""
+            QLabel {
+                background-color: #f3e5f5;
+                color: #7b1fa2;
+                padding: 10px;
+                border-radius: 5px;
+                font-size: 11px;
+                border-left: 4px solid #9c27b0;
+            }
+        """)
+        wallet_info.setWordWrap(True)
+        wallet_layout.addWidget(wallet_info)
+
+        self.wallet_table = WalletTable()
+        wallet_layout.addWidget(self.wallet_table)
+
+        wallet_widget.setLayout(wallet_layout)
+        self.tab_widget.addTab(wallet_widget, "👻 Phantom Wallet")
 
         layout.addWidget(self.tab_widget)
         
@@ -326,6 +543,38 @@ class CryptoSniperDashboard(QtWidgets.QMainWindow):
         """Manual refresh button handler"""
         self.update_all_data()
     
+    def load_wallet_portfolio(self):
+        """Load wallet portfolio from address input"""
+        try:
+            wallet_address = self.wallet_address_input.text().strip()
+            if not wallet_address:
+                QtWidgets.QMessageBox.warning(self, "Input Error", "Please enter a wallet address")
+                return
+            
+            if not self.wallet_api.validate_wallet_address(wallet_address):
+                QtWidgets.QMessageBox.warning(self, "Invalid Address", "Please enter a valid Solana wallet address")
+                return
+            
+            self.current_wallet_address = wallet_address
+            self.load_wallet_btn.setEnabled(False)
+            self.load_wallet_btn.setText("🔄 Loading...")
+            
+            # Load portfolio
+            self.wallet_df = self.wallet_api.build_portfolio(wallet_address)
+            self.wallet_table.populate_wallet_data(self.wallet_df)
+            
+            # Update status
+            if not self.wallet_df.empty:
+                total_value = self.wallet_df['Value'].sum()
+                token_count = len(self.wallet_df)
+                self.status_label.setText(f"✅ Loaded wallet: {token_count} tokens, ${total_value:.2f} total value")
+            
+        except Exception as e:
+            QtWidgets.QMessageBox.critical(self, "Wallet Error", f"Failed to load wallet:\n{str(e)}")
+        finally:
+            self.load_wallet_btn.setEnabled(True)
+            self.load_wallet_btn.setText("📊 Load Portfolio")
+    
     def update_all_data(self):
         """Update all market data"""
         try:
@@ -344,19 +593,29 @@ class CryptoSniperDashboard(QtWidgets.QMainWindow):
             self.solana_df = self.coingecko_api.get_analyzed_solana_tokens(25)
             self.solana_table.populate_solana_data(self.solana_df)
             
+            # Update wallet if address is loaded
+            if self.current_wallet_address:
+                self.wallet_df = self.wallet_api.build_portfolio(self.current_wallet_address)
+                self.wallet_table.populate_wallet_data(self.wallet_df)
+            
             # Update status
             timestamp = datetime.now().strftime('%H:%M:%S')
             kraken_count = len(self.kraken_df)
             solana_count = len(self.solana_df)
             arbitrage_count = len(self.arbitrage_df)
             
-            self.status_label.setText(f"✅ Updated: {kraken_count} Kraken pairs, {arbitrage_count} arbitrage ops, {solana_count} Solana tokens at {timestamp}")
+            wallet_status = f", {len(self.wallet_df)} wallet tokens" if not self.wallet_df.empty else ""
+            
+            self.status_label.setText(f"✅ Updated: {kraken_count} Kraken pairs, {arbitrage_count} arbitrage ops, {solana_count} Solana tokens{wallet_status} at {timestamp}")
             
             # Update footer
             strong_buys = len(self.solana_df[self.solana_df['signal'] == 'STRONG BUY']) if not self.solana_df.empty else 0
             max_arbitrage = self.arbitrage_df['profit_percent'].max() if not self.arbitrage_df.empty else 0
+            wallet_value = self.wallet_df['Value'].sum() if not self.wallet_df.empty else 0
             
-            self.footer_label.setText(f"📊 Intelligence: {strong_buys} strong buys | Best arbitrage: {max_arbitrage:.3f}% | Last update: {timestamp}")
+            wallet_text = f" | Portfolio: ${wallet_value:.2f}" if wallet_value > 0 else ""
+            
+            self.footer_label.setText(f"📊 Intelligence: {strong_buys} strong buys | Best arbitrage: {max_arbitrage:.3f}%{wallet_text} | Last update: {timestamp}")
             
         except Exception as e:
             self.status_label.setText(f"❌ Error updating data: {str(e)}")
