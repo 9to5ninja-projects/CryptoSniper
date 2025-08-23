@@ -10,16 +10,128 @@ from typing import Dict, List
 # Import our components
 import sys
 import os
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-if project_root not in sys.path:
-    sys.path.insert(0, project_root)
+import importlib.util
+
+# Add parent directory to path (go up one level from dashboard/)
+parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
 
 from api_clients.coingecko_api import CoinGeckoAPI
 from dashboard.components.alert_manager import AlertManager
 from config.settings import get_alert_config, get_config_summary
 from data.exports.export_scheduler import ExportScheduler
-from trading.paper_trading import create_virtual_portfolio, execute_signal_trade
-from trading.signal_integration import create_auto_trading_engine
+
+# Direct file import functions that always work
+def load_signal_processor():
+    """Load SignalProcessor using direct file path"""
+    try:
+        # Direct path to the file
+        signal_processor_path = os.path.join(parent_dir, 'trading', 'signal_processor.py')
+        
+        # Check if file exists
+        if not os.path.exists(signal_processor_path):
+            return None, f"File not found: {signal_processor_path}"
+        
+        # Execute the file and extract the class
+        spec = importlib.util.spec_from_file_location("signal_processor", signal_processor_path)
+        module = importlib.util.module_from_spec(spec)
+        
+        # Execute the module
+        spec.loader.exec_module(module)
+        
+        # Return the SignalProcessor class
+        return module.SignalProcessor, "Success"
+        
+    except Exception as e:
+        return None, f"Import error: {str(e)}"
+
+def load_paper_trading():
+    """Load paper trading functions"""
+    try:
+        paper_trading_path = os.path.join(parent_dir, 'trading', 'paper_trading.py')
+        
+        if not os.path.exists(paper_trading_path):
+            return None, None, f"Paper trading file not found: {paper_trading_path}"
+        
+        spec = importlib.util.spec_from_file_location("paper_trading", paper_trading_path)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        
+        return module.create_virtual_portfolio, module.execute_signal_trade, "Success"
+        
+    except Exception as e:
+        return None, None, f"Paper trading import error: {str(e)}"
+
+def load_signal_integration():
+    """Load signal integration functions"""
+    try:
+        signal_integration_path = os.path.join(parent_dir, 'trading', 'signal_integration.py')
+        
+        if not os.path.exists(signal_integration_path):
+            return None, f"Signal integration file not found: {signal_integration_path}"
+        
+        spec = importlib.util.spec_from_file_location("signal_integration", signal_integration_path)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        
+        return module.create_auto_trading_engine, "Success"
+        
+    except Exception as e:
+        return None, f"Signal integration import error: {str(e)}"
+
+def load_model_retrainer():
+    """Load ModelRetrainer using direct file path"""
+    try:
+        model_retrainer_path = os.path.join(parent_dir, 'learning', 'model_retrainer.py')
+        
+        if not os.path.exists(model_retrainer_path):
+            return None, f"ModelRetrainer file not found: {model_retrainer_path}"
+        
+        spec = importlib.util.spec_from_file_location("model_retrainer", model_retrainer_path)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        
+        return module.ModelRetrainer, "Success"
+        
+    except Exception as e:
+        return None, f"ModelRetrainer import error: {str(e)}"
+
+# Load all trading modules
+SignalProcessor, sp_message = load_signal_processor()
+create_virtual_portfolio, execute_signal_trade, pt_message = load_paper_trading()
+create_auto_trading_engine, si_message = load_signal_integration()
+ModelRetrainer, mr_message = load_model_retrainer()
+
+# Check if all imports succeeded
+import_success = True
+if not SignalProcessor:
+    st.error(f"❌ Failed to load SignalProcessor: {sp_message}")
+    import_success = False
+else:
+    st.success(f"✅ SignalProcessor loaded: {sp_message}")
+
+if not create_virtual_portfolio:
+    st.error(f"❌ Failed to load paper trading: {pt_message}")
+    import_success = False
+else:
+    st.success(f"✅ Paper trading loaded: {pt_message}")
+
+if not create_auto_trading_engine:
+    st.error(f"❌ Failed to load signal integration: {si_message}")
+    import_success = False
+else:
+    st.success(f"✅ Signal integration loaded: {si_message}")
+
+if not ModelRetrainer:
+    st.error(f"❌ Failed to load ModelRetrainer: {mr_message}")
+    import_success = False
+else:
+    st.success(f"✅ ModelRetrainer loaded: {mr_message}")
+
+if not import_success:
+    st.error("❌ Critical modules failed to load. Dashboard cannot continue.")
+    st.stop()
 
 # Page configuration
 st.set_page_config(
@@ -38,17 +150,50 @@ if 'export_scheduler' not in st.session_state:
     st.session_state.export_scheduler = ExportScheduler()
 if 'last_alert_check' not in st.session_state:
     st.session_state.last_alert_check = None
-if 'virtual_portfolio' not in st.session_state:
-    st.session_state.virtual_portfolio = create_virtual_portfolio(10000.0)
-if 'auto_trading_engine' not in st.session_state:
-    st.session_state.auto_trading_engine = create_auto_trading_engine(
-        st.session_state.virtual_portfolio,
-        st.session_state.alert_manager,
-        st.session_state.coingecko_api
-    )
+
+# Initialize trading components only if modules loaded successfully
+if import_success:
+    if 'virtual_portfolio' not in st.session_state:
+        st.session_state.virtual_portfolio = create_virtual_portfolio(10000.0)
+    if 'auto_trading_engine' not in st.session_state:
+        st.session_state.auto_trading_engine = create_auto_trading_engine(
+            st.session_state.virtual_portfolio,
+            st.session_state.alert_manager,
+            st.session_state.coingecko_api
+        )
+    if 'signal_processor' not in st.session_state:
+        st.session_state.signal_processor = SignalProcessor()
+        st.info("🤖 Trading bot initialized and ready")
 
 # Get alert configuration
 alert_config = get_alert_config()
+
+@st.cache_data(ttl=24*60*60)  # Cache for 24 hours
+def daily_model_retrain():
+    """Retrain model once per day with recent data"""
+    retrainer = ModelRetrainer()
+    results = retrainer.retrain_with_recent_data(days_back=7)
+    
+    if results.get('success'):
+        st.success(f"🤖 Model retrained with {results['training_records']} real trades")
+    else:
+        st.info(f"⏳ Model retrain skipped: {results.get('reason')}")
+    
+    return results
+
+# Call this when the dashboard loads
+retrain_results = daily_model_retrain()
+
+def process_signal_for_trading(signal_data):
+    """Call this after every signal is generated"""
+    processor = st.session_state.signal_processor
+    trade_result = processor.process_new_signal(signal_data)
+    
+    # Optional: Display trade result in dashboard
+    if trade_result.get('action') in ['buy_executed', 'sell_executed']:
+        st.success(f"🤖 Auto-trade: {trade_result}")
+    
+    return trade_result
 
 def get_alert_color(alert_type: str) -> str:
     """Get color for alert type"""
@@ -489,7 +634,7 @@ def display_alert_analytics():
                                 signal_data = {
                                     'symbol': alert.symbol,
                                     'signal': alert.signal_type,
-                                    'current_price': getattr(alert, 'current_price', 1.0),  # Default price if not available
+                                    'current_price': alert.price,  # Use the correct price attribute
                                     'confidence_score': alert.confidence_score
                                 }
                                 
@@ -512,7 +657,7 @@ def display_alert_analytics():
                                 signal_data = {
                                     'symbol': alert.symbol,
                                     'signal': alert.signal_type,
-                                    'current_price': getattr(alert, 'current_price', 1.0),
+                                    'current_price': alert.price,  # Use the correct price attribute
                                     'confidence_score': alert.confidence_score
                                 }
                                 
@@ -1388,10 +1533,30 @@ def display_ml_training():
                     
                     signal = ml_gen.generate_signal(test_data)
                     
+                    # CRITICAL: Process signal for trading immediately after generation
+                    trading_signal_data = {
+                        'symbol': 'TEST',
+                        'signal': signal.get('signal', 'HOLD'),
+                        'confidence_score': signal.get('confidence_score', 50),
+                        'current_price': test_price,
+                        'timestamp': datetime.now().isoformat()
+                    }
+                    
+                    # Process signal for auto-trading
+                    trade_result = process_signal_for_trading(trading_signal_data)
+                    
                     st.markdown("**Generated Signal:**")
                     st.success(f"🎯 Signal: **{signal.get('signal', 'N/A')}**")
                     st.info(f"📊 Confidence: **{signal.get('confidence_score', 0)}%**")
                     st.info(f"🔧 Type: **{signal.get('signal_type', 'N/A')}**")
+                    
+                    # Display trade result
+                    if trade_result.get('action') != 'no_trade':
+                        st.markdown("**🤖 Auto-Trading Result:**")
+                        if trade_result.get('success'):
+                            st.success(f"✅ Trade executed: {trade_result.get('action', 'N/A')}")
+                        else:
+                            st.warning(f"⚠️ Trade not executed: {trade_result.get('reason', 'N/A')}")
                     
                     if 'ml_enhancement' in signal and signal['ml_enhancement']:
                         ml_info = signal['ml_enhancement']

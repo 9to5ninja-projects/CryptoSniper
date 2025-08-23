@@ -1,0 +1,208 @@
+2025-08-22 17:47:00,517 - ml.signal_ml - INFO - MLSignalGenerator initialized
+2025-08-22 17:47:00,526 - ml.signal_ml - INFO - Model loaded successfully
+2025-08-22 17:47:00,526 - solana.signal_generator - INFO - SolanaSignalGenerator initialized (ML: enabled)
+2025-08-22 17:47:00,526 - root - INFO - ML-enhanced signal generation enabled
+2025-08-22 17:47:00,527 - trading.paper_trading - INFO - Portfolio state loaded from data/virtual_portfolio.json
+2025-08-22 17:47:00,528 - root - INFO - Signal processor for auto-trading initialized
+2025-08-22 17:47:06,137 - api_clients.arbitrage_engine - INFO - Built price matrix with 42 currency pairs
+2025-08-22 17:47:06,141 - api_clients.arbitrage_engine - INFO - Found 0 arbitrage opportunities
+2025-08-22 17:47:07,218 - root - INFO - Retrieved 25 Solana tokens
+2025-08-22 17:47:07,290 - trading.signal_processor - INFO - No trade: HOLD USDT 73% - HOLD_signal_no_action_required
+2025-08-22 17:47:07,291 - trading.signal_processor - INFO - No trade: HOLD USDC 70% - HOLD_signal_no_action_required
+2025-08-22 17:47:07,291 - trading.signal_processor - INFO - No trade: BUY SOL 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:47:07,291 - trading.signal_processor - INFO - No trade: WATCH LINK 66% - WATCH_signal_no_action_required
+2025-08-22 17:47:07,291 - trading.signal_processor - INFO - No trade: BUY SOL 67% - confidence_67_below_buy_threshold_75
+2025-08-22 17:47:07,292 - trading.signal_processor - INFO - No trade: BUY BIO 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:47:07,292 - trading.signal_processor - INFO - No trade: BUY PENGU 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:47:07,292 - trading.signal_processor - INFO - No trade: WATCH CBBTC 63% - WATCH_signal_no_action_required
+2025-08-22 17:47:07,292 - trading.signal_processor - INFO - No trade: WATCH TRUMP 66% - WATCH_signal_no_action_required
+2025-08-22 17:47:07,293 - trading.signal_processor - INFO - No trade: WATCH WBTC 63% - WATCH_signal_no_action_required
+2025-08-22 17:47:07,293 - trading.signal_processor - INFO - No trade: HOLD USDE 70% - HOLD_signal_no_action_required
+2025-08-22 17:47:07,293 - trading.signal_processor - INFO - No trade: AVOID WIF 32% - confidence_32_below_sell_threshold_60
+2025-08-22 17:47:07,293 - trading.signal_processor - INFO - No trade: BUY BONK 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:47:07,293 - trading.signal_processor - INFO - No trade: BUY FARTCOIN 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:47:07,293 - trading.signal_processor - INFO - No trade: BUY PUMP 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:47:07,293 - trading.signal_processor - INFO - No trade: BUY VIRTUAL 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:47:07,293 - trading.signal_processor - INFO - No trade: BUY BB 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:47:07,293 - trading.signal_processor - INFO - No trade: BUY RAY 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:47:07,294 - trading.signal_processor - INFO - No trade: WATCH CAKE 66% - WATCH_signal_no_action_required
+2025-08-22 17:47:07,294 - trading.signal_processor - INFO - No trade: BUY RENDER 61% - confidence_61_below_buy_threshold_75
+2025-08-22 17:47:07,294 - trading.signal_processor - INFO - No trade: BUY VINE 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:47:07,294 - trading.signal_processor - INFO - No trade: AVOID YZY 67% - no_position_to_sell_YZY
+2025-08-22 17:47:07,294 - trading.signal_processor - INFO - No trade: BUY PNUT 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:47:07,294 - trading.signal_processor - INFO - No trade: WATCH JLP 66% - WATCH_signal_no_action_required
+2025-08-22 17:47:07,294 - trading.signal_processor - INFO - No trade: AVOID JUP 32% - confidence_32_below_sell_threshold_60
+2025-08-22 17:48:35,888 - api_clients.arbitrage_engine - INFO - Built price matrix with 42 currency pairs
+2025-08-22 17:48:35,893 - api_clients.arbitrage_engine - INFO - Found 0 arbitrage opportunities
+2025-08-22 17:48:36,613 - root - INFO - Retrieved 25 Solana tokens
+2025-08-22 17:48:36,682 - trading.signal_processor - INFO - No trade: HOLD USDT 73% - HOLD_signal_no_action_required
+2025-08-22 17:48:36,683 - trading.signal_processor - INFO - No trade: HOLD USDC 70% - HOLD_signal_no_action_required
+2025-08-22 17:48:36,683 - trading.signal_processor - INFO - No trade: BUY SOL 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:48:36,683 - trading.signal_processor - INFO - No trade: WATCH LINK 66% - WATCH_signal_no_action_required
+2025-08-22 17:48:36,684 - trading.signal_processor - INFO - No trade: BUY SOL 67% - confidence_67_below_buy_threshold_75
+2025-08-22 17:48:36,684 - trading.signal_processor - INFO - No trade: BUY BIO 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:48:36,684 - trading.signal_processor - INFO - No trade: BUY PENGU 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:48:36,685 - trading.signal_processor - INFO - No trade: WATCH CBBTC 63% - WATCH_signal_no_action_required
+2025-08-22 17:48:36,685 - trading.signal_processor - INFO - No trade: WATCH TRUMP 66% - WATCH_signal_no_action_required
+2025-08-22 17:48:36,685 - trading.signal_processor - INFO - No trade: WATCH WBTC 63% - WATCH_signal_no_action_required
+2025-08-22 17:48:36,685 - trading.signal_processor - INFO - No trade: HOLD USDE 70% - HOLD_signal_no_action_required
+2025-08-22 17:48:36,686 - trading.signal_processor - INFO - No trade: AVOID WIF 32% - confidence_32_below_sell_threshold_60
+2025-08-22 17:48:36,686 - trading.signal_processor - INFO - No trade: BUY BONK 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:48:36,686 - trading.signal_processor - INFO - No trade: BUY FARTCOIN 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:48:36,687 - trading.signal_processor - INFO - No trade: BUY PUMP 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:48:36,687 - trading.signal_processor - INFO - No trade: BUY VIRTUAL 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:48:36,687 - trading.signal_processor - INFO - No trade: BUY BB 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:48:36,688 - trading.signal_processor - INFO - No trade: BUY RAY 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:48:36,688 - trading.signal_processor - INFO - No trade: WATCH CAKE 66% - WATCH_signal_no_action_required
+2025-08-22 17:48:36,688 - trading.signal_processor - INFO - No trade: AVOID RENDER 32% - confidence_32_below_sell_threshold_60
+2025-08-22 17:48:36,688 - trading.signal_processor - INFO - No trade: BUY PNUT 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:48:36,688 - trading.signal_processor - INFO - No trade: BUY VINE 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:48:36,689 - trading.signal_processor - INFO - No trade: AVOID YZY 67% - no_position_to_sell_YZY
+2025-08-22 17:48:36,689 - trading.signal_processor - INFO - No trade: WATCH JLP 66% - WATCH_signal_no_action_required
+2025-08-22 17:48:36,689 - trading.signal_processor - INFO - No trade: AVOID JUP 32% - confidence_32_below_sell_threshold_60
+2025-08-22 17:49:38,965 - api_clients.arbitrage_engine - INFO - Built price matrix with 42 currency pairs
+2025-08-22 17:49:38,972 - api_clients.arbitrage_engine - INFO - Found 0 arbitrage opportunities
+2025-08-22 17:49:39,537 - root - INFO - Retrieved 25 Solana tokens
+2025-08-22 17:49:39,624 - trading.signal_processor - INFO - No trade: HOLD USDT 73% - HOLD_signal_no_action_required
+2025-08-22 17:49:39,624 - trading.signal_processor - INFO - No trade: HOLD USDC 70% - HOLD_signal_no_action_required
+2025-08-22 17:49:39,625 - trading.signal_processor - INFO - No trade: BUY SOL 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:49:39,625 - trading.signal_processor - INFO - No trade: WATCH LINK 66% - WATCH_signal_no_action_required
+2025-08-22 17:49:39,625 - trading.signal_processor - INFO - No trade: BUY SOL 67% - confidence_67_below_buy_threshold_75
+2025-08-22 17:49:39,625 - trading.signal_processor - INFO - No trade: BUY BIO 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:49:39,625 - trading.signal_processor - INFO - No trade: BUY PENGU 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:49:39,626 - trading.signal_processor - INFO - No trade: WATCH CBBTC 63% - WATCH_signal_no_action_required
+2025-08-22 17:49:39,626 - trading.signal_processor - INFO - No trade: WATCH TRUMP 66% - WATCH_signal_no_action_required
+2025-08-22 17:49:39,626 - trading.signal_processor - INFO - No trade: WATCH WBTC 61% - WATCH_signal_no_action_required
+2025-08-22 17:49:39,626 - trading.signal_processor - INFO - No trade: HOLD USDE 70% - HOLD_signal_no_action_required
+2025-08-22 17:49:39,627 - trading.signal_processor - INFO - No trade: AVOID WIF 32% - confidence_32_below_sell_threshold_60
+2025-08-22 17:49:39,627 - trading.signal_processor - INFO - No trade: BUY BONK 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:49:39,627 - trading.signal_processor - INFO - No trade: BUY FARTCOIN 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:49:39,627 - trading.signal_processor - INFO - No trade: BUY PUMP 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:49:39,628 - trading.signal_processor - INFO - No trade: BUY VIRTUAL 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:49:39,628 - trading.signal_processor - INFO - No trade: BUY BB 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:49:39,628 - trading.signal_processor - INFO - No trade: BUY RAY 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:49:39,628 - trading.signal_processor - INFO - No trade: WATCH CAKE 66% - WATCH_signal_no_action_required
+2025-08-22 17:49:39,628 - trading.signal_processor - INFO - No trade: AVOID RENDER 32% - confidence_32_below_sell_threshold_60
+2025-08-22 17:49:39,629 - trading.signal_processor - INFO - No trade: BUY PNUT 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:49:39,629 - trading.signal_processor - INFO - No trade: BUY VINE 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:49:39,629 - trading.signal_processor - INFO - No trade: AVOID YZY 67% - no_position_to_sell_YZY
+2025-08-22 17:49:39,629 - trading.signal_processor - INFO - No trade: WATCH JLP 66% - WATCH_signal_no_action_required
+2025-08-22 17:49:39,629 - trading.signal_processor - INFO - No trade: AVOID JUP 32% - confidence_32_below_sell_threshold_60
+2025-08-22 17:50:09,097 - api_clients.arbitrage_engine - INFO - Built price matrix with 42 currency pairs
+2025-08-22 17:50:09,105 - api_clients.arbitrage_engine - INFO - Found 0 arbitrage opportunities
+2025-08-22 17:50:09,222 - root - INFO - Retrieved 25 Solana tokens
+2025-08-22 17:50:09,289 - trading.signal_processor - INFO - No trade: HOLD USDT 73% - HOLD_signal_no_action_required
+2025-08-22 17:50:09,290 - trading.signal_processor - INFO - No trade: HOLD USDC 70% - HOLD_signal_no_action_required
+2025-08-22 17:50:09,290 - trading.signal_processor - INFO - No trade: BUY SOL 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:50:09,290 - trading.signal_processor - INFO - No trade: WATCH LINK 66% - WATCH_signal_no_action_required
+2025-08-22 17:50:09,290 - trading.signal_processor - INFO - No trade: BUY SOL 67% - confidence_67_below_buy_threshold_75
+2025-08-22 17:50:09,291 - trading.signal_processor - INFO - No trade: BUY BIO 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:50:09,291 - trading.signal_processor - INFO - No trade: BUY PENGU 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:50:09,291 - trading.signal_processor - INFO - No trade: WATCH CBBTC 63% - WATCH_signal_no_action_required
+2025-08-22 17:50:09,291 - trading.signal_processor - INFO - No trade: WATCH TRUMP 66% - WATCH_signal_no_action_required
+2025-08-22 17:50:09,291 - trading.signal_processor - INFO - No trade: WATCH WBTC 61% - WATCH_signal_no_action_required
+2025-08-22 17:50:09,291 - trading.signal_processor - INFO - No trade: HOLD USDE 70% - HOLD_signal_no_action_required
+2025-08-22 17:50:09,292 - trading.signal_processor - INFO - No trade: AVOID WIF 32% - confidence_32_below_sell_threshold_60
+2025-08-22 17:50:09,292 - trading.signal_processor - INFO - No trade: BUY BONK 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:50:09,292 - trading.signal_processor - INFO - No trade: BUY FARTCOIN 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:50:09,292 - trading.signal_processor - INFO - No trade: BUY PUMP 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:50:09,292 - trading.signal_processor - INFO - No trade: BUY VIRTUAL 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:50:09,293 - trading.signal_processor - INFO - No trade: BUY BB 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:50:09,293 - trading.signal_processor - INFO - No trade: BUY RAY 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:50:09,293 - trading.signal_processor - INFO - No trade: WATCH CAKE 66% - WATCH_signal_no_action_required
+2025-08-22 17:50:09,293 - trading.signal_processor - INFO - No trade: AVOID RENDER 32% - confidence_32_below_sell_threshold_60
+2025-08-22 17:50:09,293 - trading.signal_processor - INFO - No trade: BUY PNUT 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:50:09,294 - trading.signal_processor - INFO - No trade: BUY VINE 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:50:09,294 - trading.signal_processor - INFO - No trade: AVOID YZY 67% - no_position_to_sell_YZY
+2025-08-22 17:50:09,294 - trading.signal_processor - INFO - No trade: WATCH JLP 66% - WATCH_signal_no_action_required
+2025-08-22 17:50:09,294 - trading.signal_processor - INFO - No trade: AVOID JUP 32% - confidence_32_below_sell_threshold_60
+2025-08-22 17:50:38,915 - api_clients.arbitrage_engine - INFO - Built price matrix with 42 currency pairs
+2025-08-22 17:50:38,925 - api_clients.arbitrage_engine - INFO - Found 0 arbitrage opportunities
+2025-08-22 17:50:39,046 - root - INFO - Retrieved 25 Solana tokens
+2025-08-22 17:50:39,110 - trading.signal_processor - INFO - No trade: HOLD USDT 73% - HOLD_signal_no_action_required
+2025-08-22 17:50:39,111 - trading.signal_processor - INFO - No trade: HOLD USDC 70% - HOLD_signal_no_action_required
+2025-08-22 17:50:39,111 - trading.signal_processor - INFO - No trade: BUY SOL 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:50:39,111 - trading.signal_processor - INFO - No trade: WATCH LINK 66% - WATCH_signal_no_action_required
+2025-08-22 17:50:39,112 - trading.signal_processor - INFO - No trade: BUY SOL 67% - confidence_67_below_buy_threshold_75
+2025-08-22 17:50:39,112 - trading.signal_processor - INFO - No trade: BUY BIO 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:50:39,112 - trading.signal_processor - INFO - No trade: BUY PENGU 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:50:39,112 - trading.signal_processor - INFO - No trade: WATCH CBBTC 63% - WATCH_signal_no_action_required
+2025-08-22 17:50:39,113 - trading.signal_processor - INFO - No trade: WATCH TRUMP 66% - WATCH_signal_no_action_required
+2025-08-22 17:50:39,113 - trading.signal_processor - INFO - No trade: WATCH WBTC 61% - WATCH_signal_no_action_required
+2025-08-22 17:50:39,113 - trading.signal_processor - INFO - No trade: HOLD USDE 70% - HOLD_signal_no_action_required
+2025-08-22 17:50:39,113 - trading.signal_processor - INFO - No trade: AVOID WIF 32% - confidence_32_below_sell_threshold_60
+2025-08-22 17:50:39,114 - trading.signal_processor - INFO - No trade: BUY BONK 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:50:39,114 - trading.signal_processor - INFO - No trade: BUY FARTCOIN 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:50:39,114 - trading.signal_processor - INFO - No trade: BUY PUMP 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:50:39,114 - trading.signal_processor - INFO - No trade: BUY VIRTUAL 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:50:39,115 - trading.signal_processor - INFO - No trade: BUY BB 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:50:39,115 - trading.signal_processor - INFO - No trade: BUY RAY 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:50:39,115 - trading.signal_processor - INFO - No trade: WATCH CAKE 66% - WATCH_signal_no_action_required
+2025-08-22 17:50:39,115 - trading.signal_processor - INFO - No trade: AVOID RENDER 32% - confidence_32_below_sell_threshold_60
+2025-08-22 17:50:39,115 - trading.signal_processor - INFO - No trade: BUY PNUT 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:50:39,115 - trading.signal_processor - INFO - No trade: BUY VINE 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:50:39,115 - trading.signal_processor - INFO - No trade: AVOID YZY 67% - no_position_to_sell_YZY
+2025-08-22 17:50:39,115 - trading.signal_processor - INFO - No trade: WATCH JLP 66% - WATCH_signal_no_action_required
+2025-08-22 17:50:39,115 - trading.signal_processor - INFO - No trade: AVOID JUP 32% - confidence_32_below_sell_threshold_60
+2025-08-22 17:51:08,908 - api_clients.arbitrage_engine - INFO - Built price matrix with 42 currency pairs
+2025-08-22 17:51:08,915 - api_clients.arbitrage_engine - INFO - Found 0 arbitrage opportunities
+2025-08-22 17:51:09,405 - root - INFO - Retrieved 25 Solana tokens
+2025-08-22 17:51:09,474 - trading.signal_processor - INFO - No trade: HOLD USDT 73% - HOLD_signal_no_action_required
+2025-08-22 17:51:09,474 - trading.signal_processor - INFO - No trade: HOLD USDC 73% - HOLD_signal_no_action_required
+2025-08-22 17:51:09,474 - trading.signal_processor - INFO - No trade: BUY SOL 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:51:09,475 - trading.signal_processor - INFO - No trade: WATCH LINK 66% - WATCH_signal_no_action_required
+2025-08-22 17:51:09,475 - trading.signal_processor - INFO - No trade: BUY SOL 67% - confidence_67_below_buy_threshold_75
+2025-08-22 17:51:09,475 - trading.signal_processor - INFO - No trade: BUY BIO 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:51:09,475 - trading.signal_processor - INFO - No trade: BUY PENGU 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:51:09,476 - trading.signal_processor - INFO - No trade: WATCH CBBTC 63% - WATCH_signal_no_action_required
+2025-08-22 17:51:09,476 - trading.signal_processor - INFO - No trade: WATCH TRUMP 66% - WATCH_signal_no_action_required
+2025-08-22 17:51:09,476 - trading.signal_processor - INFO - No trade: WATCH WBTC 63% - WATCH_signal_no_action_required
+2025-08-22 17:51:09,476 - trading.signal_processor - INFO - No trade: HOLD USDE 70% - HOLD_signal_no_action_required
+2025-08-22 17:51:09,476 - trading.signal_processor - INFO - No trade: AVOID WIF 32% - confidence_32_below_sell_threshold_60
+2025-08-22 17:51:09,477 - trading.signal_processor - INFO - No trade: BUY BONK 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:51:09,477 - trading.signal_processor - INFO - No trade: BUY FARTCOIN 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:51:09,477 - trading.signal_processor - INFO - No trade: BUY PUMP 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:51:09,477 - trading.signal_processor - INFO - No trade: BUY BB 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:51:09,477 - trading.signal_processor - INFO - No trade: BUY RAY 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:51:09,477 - trading.signal_processor - INFO - No trade: WATCH CAKE 66% - WATCH_signal_no_action_required
+2025-08-22 17:51:09,477 - trading.signal_processor - INFO - No trade: AVOID RENDER 32% - confidence_32_below_sell_threshold_60
+2025-08-22 17:51:09,477 - trading.signal_processor - INFO - No trade: BUY VINE 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:51:09,478 - trading.signal_processor - INFO - No trade: BUY PNUT 66% - confidence_66_below_buy_threshold_75
+2025-08-22 17:51:09,478 - trading.signal_processor - INFO - No trade: BUY VIRTUAL 64% - confidence_64_below_buy_threshold_75
+2025-08-22 17:51:09,478 - trading.signal_processor - INFO - No trade: WATCH JLP 66% - WATCH_signal_no_action_required
+2025-08-22 17:51:09,478 - trading.signal_processor - INFO - No trade: AVOID JUP 32% - confidence_32_below_sell_threshold_60
+2025-08-22 17:51:09,478 - trading.signal_processor - INFO - No trade: AVOID YZY 53% - confidence_53_below_sell_threshold_60
+2025-08-22 18:29:31,205 - ml.signal_ml - INFO - MLSignalGenerator initialized
+2025-08-22 18:29:31,218 - ml.signal_ml - INFO - Model loaded successfully
+2025-08-22 18:29:31,219 - solana.signal_generator - INFO - SolanaSignalGenerator initialized (ML: enabled)
+2025-08-22 18:29:31,219 - root - INFO - ML-enhanced signal generation enabled
+2025-08-22 18:29:31,220 - trading.paper_trading - INFO - Portfolio state loaded from data/virtual_portfolio.json
+2025-08-22 18:29:31,220 - root - INFO - Signal processor for auto-trading initialized
+2025-08-22 18:29:34,694 - api_clients.arbitrage_engine - INFO - Built price matrix with 42 currency pairs
+2025-08-22 18:29:34,695 - api_clients.arbitrage_engine - INFO - Found 0 arbitrage opportunities
+2025-08-22 18:29:35,301 - root - INFO - Retrieved 25 Solana tokens
+2025-08-22 18:29:35,364 - trading.signal_processor - INFO - No trade: HOLD USDT 73% - HOLD_signal_no_action_required
+2025-08-22 18:29:35,365 - trading.signal_processor - INFO - No trade: HOLD USDC 73% - HOLD_signal_no_action_required
+2025-08-22 18:29:35,365 - trading.signal_processor - INFO - No trade: WATCH SOL 61% - WATCH_signal_no_action_required
+2025-08-22 18:29:35,365 - trading.signal_processor - INFO - No trade: WATCH LINK 66% - WATCH_signal_no_action_required
+2025-08-22 18:29:35,365 - trading.signal_processor - INFO - No trade: WATCH SOL 63% - WATCH_signal_no_action_required
+2025-08-22 18:29:35,366 - trading.signal_processor - INFO - No trade: BUY BIO 66% - confidence_66_below_buy_threshold_75
+2025-08-22 18:29:35,366 - trading.signal_processor - INFO - No trade: BUY PENGU 64% - confidence_64_below_buy_threshold_75
+2025-08-22 18:29:35,366 - trading.signal_processor - INFO - No trade: WATCH CBBTC 61% - WATCH_signal_no_action_required
+2025-08-22 18:29:35,366 - trading.signal_processor - INFO - No trade: WATCH TRUMP 66% - WATCH_signal_no_action_required
+2025-08-22 18:29:35,366 - trading.signal_processor - INFO - No trade: WATCH WBTC 61% - WATCH_signal_no_action_required
+2025-08-22 18:29:35,367 - trading.signal_processor - INFO - No trade: HOLD USDE 73% - HOLD_signal_no_action_required
+2025-08-22 18:29:35,367 - trading.signal_processor - INFO - No trade: WATCH WIF 66% - WATCH_signal_no_action_required
+2025-08-22 18:29:35,367 - trading.signal_processor - INFO - No trade: BUY BONK 61% - confidence_61_below_buy_threshold_75
+2025-08-22 18:29:35,367 - trading.signal_processor - INFO - No trade: BUY FARTCOIN 64% - confidence_64_below_buy_threshold_75
+2025-08-22 18:29:35,367 - trading.signal_processor - INFO - No trade: BUY PUMP 64% - confidence_64_below_buy_threshold_75
+2025-08-22 18:29:35,367 - trading.signal_processor - INFO - No trade: BUY VIRTUAL 64% - confidence_64_below_buy_threshold_75
+2025-08-22 18:29:35,367 - trading.signal_processor - INFO - No trade: BUY BB 66% - confidence_66_below_buy_threshold_75
+2025-08-22 18:29:35,368 - trading.signal_processor - INFO - No trade: WATCH RAY 63% - WATCH_signal_no_action_required
+2025-08-22 18:29:35,368 - trading.signal_processor - INFO - No trade: WATCH CAKE 66% - WATCH_signal_no_action_required
+2025-08-22 18:29:35,368 - trading.signal_processor - INFO - No trade: BUY VINE 66% - confidence_66_below_buy_threshold_75
+2025-08-22 18:29:35,368 - trading.signal_processor - INFO - No trade: WATCH RENDER 66% - WATCH_signal_no_action_required
+2025-08-22 18:29:35,368 - trading.signal_processor - INFO - No trade: AVOID YZY 67% - no_position_to_sell_YZY
+2025-08-22 18:29:35,368 - trading.signal_processor - INFO - No trade: AVOID PNUT 32% - confidence_32_below_sell_threshold_60
+2025-08-22 18:29:35,368 - trading.signal_processor - INFO - No trade: WATCH JLP 66% - WATCH_signal_no_action_required
+2025-08-22 18:29:35,368 - trading.signal_processor - INFO - No trade: WATCH JUP 66% - WATCH_signal_no_action_required

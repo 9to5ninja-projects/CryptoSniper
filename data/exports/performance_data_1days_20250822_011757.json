@@ -1,0 +1,31 @@
+{
+  "export_info": {
+    "export_type": "performance_data",
+    "days_back": 1,
+    "export_timestamp": "2025-08-22T01:17:57.654808",
+    "total_records": 1
+  },
+  "summary": {
+    "avg_alerts_per_day": 5.0,
+    "avg_response_time": 200.0,
+    "avg_success_rate": 98.0,
+    "total_api_calls": 100
+  },
+  "data": [
+    {
+      "date": "2025-08-22",
+      "timestamp": "2025-08-22T01:17:57.648924",
+      "alerts_generated": 5,
+      "api_calls_made": 100,
+      "response_time_ms": 200,
+      "success_rate": 98.0,
+      "active_alerts": 0,
+      "system_uptime_hours": 24,
+      "memory_usage_mb": 100,
+      "cpu_usage_percent": 15,
+      "strong_buy_threshold": 75,
+      "volatility_threshold": 15,
+      "volume_spike_threshold": 200
+    }
+  ]
+}

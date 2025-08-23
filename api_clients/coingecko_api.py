@@ -13,9 +13,12 @@ if project_root not in sys.path:
 
 try:
     from solana.signal_generator import SolanaSignalGenerator
+    from trading.signal_processor import SignalProcessor
     ML_AVAILABLE = True
+    TRADING_AVAILABLE = True
 except ImportError:
     ML_AVAILABLE = False
+    TRADING_AVAILABLE = False
 
 class CoinGeckoAPI:
     """CoinGecko API client for Solana ecosystem tokens"""
@@ -40,8 +43,34 @@ class CoinGeckoAPI:
                 logging.info("ML-enhanced signal generation enabled")
             except Exception as e:
                 logging.warning(f"ML signal generator initialization failed: {e}")
+        
+        # Initialize signal processor for auto-trading
+        self.signal_processor = None
+        if TRADING_AVAILABLE:
+            try:
+                self.signal_processor = SignalProcessor()
+                logging.info("Signal processor for auto-trading initialized")
+            except Exception as e:
+                logging.warning(f"Signal processor initialization failed: {e}")
         else:
             logging.info("Using rule-based signal generation only")
+    
+    def process_signal_for_trading(self, signal_data):
+        """Call this after every signal is generated"""
+        if not self.signal_processor:
+            return {'action': 'no_processor', 'reason': 'signal_processor_not_available'}
+        
+        try:
+            trade_result = self.signal_processor.process_new_signal(signal_data)
+            
+            # Log trade results for monitoring
+            if trade_result.get('action') in ['buy_executed', 'sell_executed']:
+                logging.info(f"🤖 Auto-trade executed: {trade_result}")
+            
+            return trade_result
+        except Exception as e:
+            logging.error(f"Error processing signal for trading: {e}")
+            return {'action': 'error', 'reason': str(e)}
     
     def _rate_limit(self):
         """Enforce rate limiting"""
@@ -125,6 +154,19 @@ class CoinGeckoAPI:
                         # Find original token data
                         original_token = next((t for t in tokens if t.get('symbol', '').upper() == signal.get('symbol', '')), {})
                         
+                        # CRITICAL: Process signal for trading immediately after generation
+                        from datetime import datetime
+                        trading_signal_data = {
+                            'symbol': signal.get('symbol', '').upper(),
+                            'signal': signal.get('signal', 'HOLD'),
+                            'confidence_score': signal.get('confidence_score', 50),
+                            'current_price': signal.get('current_price', 0),
+                            'timestamp': datetime.now().isoformat()
+                        }
+                        
+                        # Process signal for auto-trading
+                        trade_result = self.process_signal_for_trading(trading_signal_data)
+                        
                         # Create analysis combining original data with enhanced signal
                         token_analysis = original_token.copy()
                         token_analysis.update({
@@ -133,7 +175,8 @@ class CoinGeckoAPI:
                             'confidence_score': signal.get('confidence_score', 50),
                             'volume_mcap_ratio': signal.get('volume_mcap_ratio', 0),
                             'signal_type': signal.get('signal_type', 'rule_based'),
-                            'risk_level': self._assess_risk_level(signal.get('market_cap', 0))
+                            'risk_level': self._assess_risk_level(signal.get('market_cap', 0)),
+                            'trade_result': trade_result  # Add trade result to analysis
                         })
                         
                         # Add ML enhancement info if available
@@ -215,6 +258,19 @@ class CoinGeckoAPI:
                     signal = "AVOID"
                     confidence = 40
                 
+                # CRITICAL: Process signal for trading immediately after generation
+                from datetime import datetime
+                trading_signal_data = {
+                    'symbol': token.get('symbol', '').upper(),
+                    'signal': signal,
+                    'confidence_score': confidence,
+                    'current_price': price,
+                    'timestamp': datetime.now().isoformat()
+                }
+                
+                # Process signal for auto-trading
+                trade_result = self.process_signal_for_trading(trading_signal_data)
+                
                 # Add analysis to token data
                 token_analysis = token.copy()
                 token_analysis.update({
@@ -223,7 +279,8 @@ class CoinGeckoAPI:
                     'signal': signal,
                     'confidence_score': confidence,
                     'volume_mcap_ratio': round(volume_to_mcap, 2),
-                    'signal_type': 'rule_based'
+                    'signal_type': 'rule_based',
+                    'trade_result': trade_result  # Add trade result to analysis
                 })
                 
                 analyzed_tokens.append(token_analysis)

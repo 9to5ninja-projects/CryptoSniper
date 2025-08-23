@@ -25,6 +25,7 @@ if project_root not in sys.path:
 from dashboard.components.alert_manager import AlertManager
 from api_clients.coingecko_api import CoinGeckoAPI
 from config.settings import get_alert_config
+from learning.daily_exporter import DailyExporter
 
 class ExportScheduler:
     """
@@ -114,7 +115,7 @@ class ExportScheduler:
         Schedule daily export at specified time
         
         Args:
-            export_type: Type of export ('signals', 'alerts', 'performance', 'all')
+            export_type: Type of export ('signals', 'alerts', 'performance', 'learning', 'all')
             time_str: Time in HH:MM format (24-hour)
         """
         try:
@@ -124,6 +125,8 @@ class ExportScheduler:
                 schedule.every().day.at(time_str).do(self._export_alert_history_job)
             elif export_type == 'performance':
                 schedule.every().day.at(time_str).do(self._export_performance_data_job)
+            elif export_type == 'learning':
+                schedule.every().day.at(time_str).do(self._export_learning_data_job)
             elif export_type == 'all':
                 schedule.every().day.at(time_str).do(self._export_all_data_job)
             else:
@@ -668,6 +671,36 @@ class ExportScheduler:
         if len(self.export_stats['export_history']) > 100:
             self.export_stats['export_history'] = self.export_stats['export_history'][-100:]
     
+    def schedule_daily_learning_export(self):
+        """Schedule daily export of trading performance for ML training"""
+        
+        # This should run at end of trading day (e.g., 11:59 PM)
+        schedule.every().day.at("23:59").do(self._export_learning_data_job)
+        self.logger.info("Scheduled daily learning data export at 23:59")
+    
+    def export_learning_data(self):
+        """Export today's trading data for tomorrow's learning"""
+        try:
+            # Import here to avoid circular imports
+            import streamlit as st
+            
+            if hasattr(st, 'session_state') and 'signal_processor' in st.session_state:
+                exporter = DailyExporter()
+                exports = exporter.export_daily_performance(st.session_state.signal_processor)
+                
+                self.logger.info(f"Daily learning data exported: {exports}")
+                self._update_export_stats('learning_data', True, len(exports))
+                return exports
+            else:
+                self.logger.warning("No signal processor found for export")
+                self._update_export_stats('learning_data', False, 0)
+                return {}
+                
+        except Exception as e:
+            self.logger.error(f"Failed to export learning data: {e}")
+            self._update_export_stats('learning_data', False, 0)
+            raise
+    
     # Scheduled job wrapper functions
     def _export_signal_history_job(self):
         """Job wrapper for signal history export"""
@@ -692,6 +725,14 @@ class ExportScheduler:
             self.logger.info("Scheduled performance data export completed")
         except Exception as e:
             self.logger.error(f"Scheduled performance data export failed: {e}")
+    
+    def _export_learning_data_job(self):
+        """Job wrapper for learning data export"""
+        try:
+            self.export_learning_data()
+            self.logger.info("Scheduled learning data export completed")
+        except Exception as e:
+            self.logger.error(f"Scheduled learning data export failed: {e}")
     
     def _export_all_data_job(self):
         """Job wrapper for comprehensive data export"""
@@ -744,6 +785,13 @@ def test_export_scheduler():
         log_files = scheduler.export_system_logs(days_back=2, format_type='both')
         print(f"✅ System logs exported: {len(log_files)} files")
         
+        # Test learning data export (will show warning since no signal processor in test)
+        try:
+            learning_files = scheduler.export_learning_data()
+            print(f"✅ Learning data export tested: {len(learning_files)} files")
+        except Exception as e:
+            print(f"⚠️ Learning data export test (expected warning): {e}")
+        
         # Test comprehensive export
         print("\n📋 Testing comprehensive export...")
         all_files = scheduler.export_all_data(days_back=3, format_type='both')
@@ -760,6 +808,8 @@ def test_export_scheduler():
         print("\n⏰ Testing scheduling setup...")
         scheduler.schedule_daily_export('signals', '09:00')
         scheduler.schedule_daily_export('alerts', '10:00')
+        scheduler.schedule_daily_export('learning', '23:59')
+        scheduler.schedule_daily_learning_export()
         scheduler.schedule_weekly_report('monday', '08:00')
         print("✅ Scheduled exports configured")
         

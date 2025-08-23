@@ -1,0 +1,88 @@
+{
+  "export_info": {
+    "export_type": "comprehensive_report",
+    "days_back": 3,
+    "export_timestamp": "2025-08-22T12:43:57.677431",
+    "format_type": "both"
+  },
+  "export_results": {
+    "signals": {
+      "csv": "e:\\CryptoSniperDashboard\\data\\exports\\signal_history_3days_20250822_124357.csv",
+      "json": "e:\\CryptoSniperDashboard\\data\\exports\\signal_history_3days_20250822_124357.json"
+    },
+    "alerts": {
+      "csv": "e:\\CryptoSniperDashboard\\data\\exports\\alert_history_3days_20250822_124357.csv",
+      "json": "e:\\CryptoSniperDashboard\\data\\exports\\alert_history_3days_20250822_124357.json"
+    },
+    "performance": {
+      "csv": "e:\\CryptoSniperDashboard\\data\\exports\\performance_data_3days_20250822_124357.csv",
+      "json": "e:\\CryptoSniperDashboard\\data\\exports\\performance_data_3days_20250822_124357.json"
+    },
+    "logs": {
+      "csv": "e:\\CryptoSniperDashboard\\data\\exports\\system_logs_3days_20250822_124357.csv",
+      "json": "e:\\CryptoSniperDashboard\\data\\exports\\system_logs_3days_20250822_124357.json"
+    }
+  },
+  "export_statistics": {
+    "total_exports": 9,
+    "successful_exports": 8,
+    "failed_exports": 1,
+    "last_export_time": "2025-08-22T12:43:57.677345",
+    "export_history": [
+      {
+        "timestamp": "2025-08-22T12:43:56.802070",
+        "export_type": "signal_history",
+        "success": true,
+        "record_count": 50
+      },
+      {
+        "timestamp": "2025-08-22T12:43:56.807038",
+        "export_type": "alert_history",
+        "success": true,
+        "record_count": 9
+      },
+      {
+        "timestamp": "2025-08-22T12:43:56.811259",
+        "export_type": "performance_data",
+        "success": true,
+        "record_count": 7
+      },
+      {
+        "timestamp": "2025-08-22T12:43:56.829294",
+        "export_type": "system_logs",
+        "success": true,
+        "record_count": 144
+      },
+      {
+        "timestamp": "2025-08-22T12:43:57.322786",
+        "export_type": "learning_data",
+        "success": false,
+        "record_count": 0
+      },
+      {
+        "timestamp": "2025-08-22T12:43:57.655284",
+        "export_type": "signal_history",
+        "success": true,
+        "record_count": 50
+      },
+      {
+        "timestamp": "2025-08-22T12:43:57.660244",
+        "export_type": "alert_history",
+        "success": true,
+        "record_count": 9
+      },
+      {
+        "timestamp": "2025-08-22T12:43:57.665314",
+        "export_type": "performance_data",
+        "success": true,
+        "record_count": 3
+      },
+      {
+        "timestamp": "2025-08-22T12:43:57.677353",
+        "export_type": "system_logs",
+        "success": true,
+        "record_count": 216
+      }
+    ]
+  }
+}

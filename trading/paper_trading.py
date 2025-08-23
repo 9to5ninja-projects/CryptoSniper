@@ -61,6 +61,13 @@ class VirtualPortfolio:
             # Calculate quantity to trade
             quantity = position_size_usd / current_price
             
+            # Debug logging for trade calculation
+            self.logger.info(f"TRADE DEBUG - {symbol}:")
+            self.logger.info(f"  Position size requested: ${position_size_usd}")
+            self.logger.info(f"  Current price used: ${current_price}")
+            self.logger.info(f"  Calculated quantity: {quantity:.6f}")
+            self.logger.info(f"  Expected cost: ${quantity * current_price:.2f}")
+            
             # Execute trade based on signal type
             if signal_type in ['BUY', 'STRONG_BUY']:
                 return self._execute_buy(symbol, quantity, current_price, signal_data)
